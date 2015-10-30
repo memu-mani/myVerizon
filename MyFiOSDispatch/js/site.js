@@ -4,11 +4,13 @@ var calendars = {};
 
 $(document).ready(function () {
 
-    function initialize() {
+    function initialize(loadtype) {
         var map_options = {
             center: new google.maps.LatLng(33.84659, -84.35686),
             zoom: 14,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI:true
+
         };
 
         var google_map = new google.maps.Map(document.getElementById("map_canvas"), map_options);
@@ -17,7 +19,15 @@ $(document).ready(function () {
             content: 'loading'
         });
         setCustomerMarker(google_map);
-        setTechnicianMarker(google_map);
+      
+        if(loadtype=='install')
+        {
+            setInstallTechnicianMarker(google_map);            
+        }
+        else  if(loadtype=='repair')
+        {
+            setRepairTechnicianMarker(google_map);
+        }
 
     }
 
@@ -44,7 +54,7 @@ $(document).ready(function () {
         }
     }
 
-    function setTechnicianMarker(google_map) {
+    function setInstallTechnicianMarker(google_map) {
 
         var installTechnician = [
 ['Technician 1', 33.84659, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
@@ -66,62 +76,138 @@ $(document).ready(function () {
 
             });
         }
-
     }
+
+        function setRepairTechnicianMarker(google_map) {
+
+         
+            var technicians = getTechniciandetails();
+   
+            if(technicians!=null)
+
+            {
+                //var i = 0;
+                for (var i = 0; i < technicians.length; i++) {
+                    var item = technicians[i];
+                    var m = new google.maps.Marker({
+                        map: google_map,
+                        animation: google.maps.Animation.DROP,
+                        title: item[0],
+                        position: new google.maps.LatLng(item[1], item[2]),
+                        html: item[3],
+
+                    });
+                }
+            }
+
+        }
+
+        function getTechniciandetails()
+        {
+           
+            var technicianType = $("#repairOptions option:selected").val() ;
+
+            if(technicianType=='equipment')
+
+            {
+                var technicians = [
+['Technician 1', 33.84359, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
+
+
+                ];
+
+                return technicians;
+            }
+            else  if(technicianType=='internet')
+            {
+                var technicians = [
+['Technician 1', 33.84559, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
+['Technician 1', 33.84759, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
+   
+
+                ];
+
+                return technicians;
+
+            }
+            else  if(technicianType=='voice')
+            {
+                var technicians = [
+['Technician 1', 33.84659, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
+
+                ];
+
+                return technicians;
+
+            }
+            else
+            {
+                return null;
+
+            }
+             
+                   
+        }
+       
     initialize();
 
-    $('#repairOptionstag').hide();
-    //  $('#dateforLater').hide();
+    
+    $('#subAction').hide();
+    $('#repairOptionstag').hide();    
     $('#datepickertag').hide();
 
-    $('#repairOptions').click(function () {
+    $('#lnkinstall').click(function () {
         
-        $("#selectedrepirValue").html('<h3>' + $("#repairOptions option:selected").text() + '</h3>');
-          return false;
+        initialize('install');
+        $('#masterAction').hide();
+        $('#subAction').show();
+
+        return false;
     });
-
-    $('#action1').click(function () {
-
-        $('#action1').text(' Now ');
-        $('#action2').text(' Later ');
+    
+    $('#lnkrepair').click(function () {
+        
+        $('#masterAction').hide();
+        $('#repairOptions').trigger("click");
+        //$('#repairOptionstag').show();      
         return false;
     });
 
-   
-
-    $('#action2').click(function () {
-    
-        
-        $('#repairOptions').hide();
-        $('#datepickertag').hide();
-        var action= $('#action2');
-        
-        if ($.trim(action.text()) == 'Later') {
-           
-            $('#datepickertag').show();
-            $('#datepick').val('01/02/2015');
-            $('#datepick').trigger('click');
-        }
-        else if (action.text().toLowerCase().indexOf("repair") >= 0)
-        {
-            $('#repairOptionstag').show();
-            $('#repairOptions').trigger('click');
-        }           
-        else {
-            
-            $('#action1').text(' Now ');
-            $('#action2').text(' Later ');
-        }
-          return false;
+    $('#lnkback').click(function () {
+        initialize();
+        $('#masterAction').show();
+           $('#subAction').hide();
+       
+        return false;
     });
 
+    $("#repairOptions").change(function () {
+         $('#repairOptionstag').hide();
+        $('#subAction').show();       
+        initialize('repair');
+    });
+    
+    $('#repairOptions').click(function () {
+        
+        $('#repairOptionstag').show();
+          return false;
+    });
+     
 
-    function setDatePicker()
-    {
+   
 
-    }
+
+ 
+
+    //$(".repair_option").click(function (e) {
+    //   debugger;
+    //    alert(e.val());
+    //});
+
+
 
 });
+
 
 
 //$(document).ready( function() {

@@ -26,112 +26,92 @@
 		});
     </script>
 
+    <style>
+        #wrapper {
+            position: relative;
+        }
+
+        #over_map {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 99;
+        }
+    </style>
+
 </head>
 <body>
-    <div class="wrap">
-        <div class="header">
-            <div class="header_top">
-                <div class="menu-ico"><a href="#menu"></a></div>
-                <div class="profile_details">
-                    <br />
-                    <br />   
-                    <br />
-                                     
-                    <div class="clear"></div>
-                </div>
-                    <!--<div class="column_right">
-            <div class="column_right_grid">
-                <div class="newsletter">
-                    <form>
+    <div id="wrapper">
+             
+        <div class="main">
+            <div class="wrap">
+                <div class="column_left">
+
+                    <div id="map_canvas" style="width:97%;height:500px;"></div>
+
+                    <div class="chart_list">
+                        <div id="masterAction" class="masteraction">
+                            <ul>
+                                <li><a href="#" class="red"  id="lnkinstall">Install</a></li>
+                                <li><a href="#"  class="red" id="lnkrepair">Repair</a></li>                                
+                            </ul>
+                        </div>
+                        <div id="subAction" class="subaction">
+                            <ul>                                                              
+                                <li><a href="#"  class="red" id="lnkrequestnow">Request Now</a></li>
+                                <li><a href="#"  class="red" id="lnklater">Later</a></li>   
+                                <li><a href="#" class="red" id="lnkback"><img src="images/next-arrow.png" alt="back"></a></li> 
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="repairOptionstag">
                         <span>
-                            <i><img src="images/mail.png" alt="" /></i>
-                                <input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}"></span>
+                            <select name="repairOptionsId" id="repairOptions">
+                                <option value="equipment">Equipment</option>
+                                <option value="internet">Internet</option>
+                                <option value="voice">Voice</option>
+                                <option value="none">None</option>
+                            </select>
+                        </span>
+                        <div id="selectedrepirValue">
 
-                    </form>
-                </div>
-            </div>-->
-                    <!--<div class="profile_details">
-        <div class="sign_in">
-            <h3>Sign in to your account</h3>
-            <form>
-                <span>
-                    <i><img src="images/mail.png" alt="" /></i><input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
-                </span>
-                </form>-->
-                    <!--<form>
-            <span>
-                <i><img src="images/user.png" alt="" /></i>
-                <input type="text" value="Customer current service location">
 
-            </span>
-        </form>
-        <div class="clear"></div>-->
-                    <!--</div>
-            <div class="clear"></div>
-        </div>-->
-              
-    </div>
-    <div class="main">
-        <div class="wrap">
-            <div class="column_left">
+                        </div>
+                    </div>
 
-                <div id="map_canvas" style="width:97%;height:350px;"></div> 
-           
-                <div class="chart_list">
-                    <div id="masterAction">
-                        <ul>
-                            <li><a href="#" class="red" id="action1">Install</a></li>
-                            <li><a href="#" class="purple" id="action2">Repair<img src="images/next-arrow.png" alt="" /></a></li>
-                            <div class="clear"></div>
-                        </ul>
-                    </div>                 
-                </div>
+                    <div id="datepickertag">
+                        <span>
+                            <input type="date" name="datepick">
 
-                <div id="repairOptionstag">
-                    
-                    <span>
-                        <select name="repairOptions">
-                            <option value="equipment">Equipment</option>
-                            <option value="internet">Internet</option>
-                            <option value="voice">Voice</option>
-                            <option value="none">None</option>
-                        </select> 
-                    </span>
-                    <div id="selectedrepirValue">
-
+                        </span>
 
                     </div>
                 </div>
 
-                <div id="datepickertag">
-                    <span>
-                       <input type="date" name="datepick">
+            </div>
 
-                    </span>
 
-                </div>
-            </div>      
-
+            <div class="clear"></div>
         </div>
 
+        <div class="over_map">
+            <div class="menu-ico"><a href="#menu"></a></div>
+        </div>
+        </div>
 
-        <div class="clear"></div>
-    </div>
-   
-     
-    <nav id="menu">
-        <ul>
-            <li><a href="#" id="lnkProfile"><i><img src="images/user.png"></i> Profile</a></li>
-            <li><a href="#" ><span><i><img src="images/mail.png"></i> Messages</span><label class="digits active">5</label><div class="clear"></div></a></li>
-            <li><a href="#"id="lnkCompliants" ><span> <i><img src="images/invites.png"></i> Compliants</span><label class="digits">3</label><div class="clear"></div></a></li>
-            <li><a href="#"><span> <i><img src="images/events.png"></i> Events</span><label class="digits">5</label><div class="clear"></div></a></li>
-            <li><a href="#"><i><img src="images/favourite.png" alt="" /></i>Favorites</a></li>
-            <li><a href="#"><span><i><img src="images/statistics.png"></i>  Statistics</span></a></li>
-            <li><a href="#"><i><img src="images/settings.png" alt="" /></i>Settings</a></li>
-        </ul>
-    </nav>
-    <div class="copy-right">
-        <p>© 2013 Designed by <a href="http://verizon.com/" target="_blank"></a>  • Verizon </p>
-    </div>
+        <nav id="menu">
+            <ul>
+                <li><a href="#" id="lnkProfile"><i><img src="images/user.png"></i>Order Now</a></li>
+                <li><a href="#"><span><i><img src="images/mail.png"></i>Messages</span><label class="digits active">5</label><div class="clear"></div></a></li>
+                <li><a href="#" id="lnkCompliants"><span> <i><img src="images/invites.png"></i>Track Technician</span><div class="clear"></div></a></li>
+                <!--<li><a href="#"><span> <i><img src="images/events.png"></i> Events</span><label class="digits">5</label><div class="clear"></div></a></li>
+                <li><a href="#"><i><img src="images/favourite.png" alt="" /></i>Favorites</a></li>
+                <li><a href="#"><span><i><img src="images/statistics.png"></i>  Statistics</span></a></li>
+                <li><a href="#"><i><img src="images/settings.png" alt="" /></i>Settings</a></li>-->
+            </ul>
+        </nav>
+
 </body>
 </html>

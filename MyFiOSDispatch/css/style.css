@@ -28,14 +28,14 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
-@font-face {
+/*@font-face {
       font-family: 'ambleregular';
       src: url(../fonts/Amble-Regular-webfont.ttf) format('truetype');
-}
+}*/
 body{
-	font-family: 'ambleregular';
-	background:#1f253d;
-	margin:15px 0;
+	font-family:sans-serif; /* 'ambleregular';*/
+	background-color:transparent;
+	margin:5px 0;
 }
 .wrap{
 	width:95%;
@@ -304,7 +304,7 @@ fieldset#body {
 	}
 }
 .chart_list{
-	background:#50597b;
+	/*background:#50597b;*/
 	text-align:center;
 	border-radius: 0px 0px 5px 5px;
 	-webkit-border-radius: 0px 0px 5px 5px;
@@ -318,9 +318,9 @@ fieldset#body {
 }
 .chart_list li a{
 	display: block;
-	color: #9099B7;
-	font-size:1.5em;	
-	padding:10px 0;
+	color: rgba(31, 37, 61, 1);
+	font-size:1em;	
+	padding:7px 0;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -329,20 +329,25 @@ fieldset#body {
 .chart_list li a:hover{
 	background:#3F4663;
 }
-.chart_list li:nth-child(2){
+    .chart_list #masterAction li:nth-child(2) {
+        border-right:none; 
+    }
+
+.chart_list #subAction li:nth-child(3){
 	border-right:none; 
 }
 .chart_list li a.red{
-	border-top:5px solid #e64c65;
+	border-top:1px solid #50597B;
+   
 }
 .chart_list li a.purple{
-	border-top:5px solid #11a8ab;
+	border-top:5px thin #11a8ab;
 }
 .chart_list li a.yellow{
-	border-top:5px solid #fcb150;
+	border-top:5px thin #fcb150;
 }
 .chart_list li a.blue {
-	border-top: 5px solid #4fc4f6;
+	border-top: 5px thin #4fc4f6;
 }
 .chart_list p{
 	font-size:1.5em;

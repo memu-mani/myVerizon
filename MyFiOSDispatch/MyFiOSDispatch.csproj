@@ -69,6 +69,8 @@
     <Content Include="packages.config" />
     <Content Include="images\Thumbs.db" />
     <Content Include="fonts\Amble-Regular-webfont.ttf" />
+    <None Include="Properties\PublishProfiles\verzion - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\verzion - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
