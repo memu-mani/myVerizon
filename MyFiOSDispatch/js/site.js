@@ -180,7 +180,7 @@ $(document).ready(function () {
                 type: "GET",
                 async: false,
                 crossDomain: true,
-                url: "https://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician",
+                url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician",
                 //url: "http://localhost:22283/Service1.svc/GetInstallTechnician",// + api,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
