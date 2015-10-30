@@ -193,7 +193,7 @@ $(document).ready(function () {
                 },
 
                 error: function (jqXHR, status) {
-                    $("#selectedrepirValue").text(jqXHR);
+                    $("#selectedrepirValue").text("Sever Error");
                     techniciandata= null;
                     // error handler
                 }
