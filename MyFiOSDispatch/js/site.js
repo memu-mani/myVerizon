@@ -234,20 +234,39 @@ $(document).ready(function () {
             //return techniciandata;
         }
      initialize();
-       
+
+     $('#mapBox').show();
+     $('#messagebox').hide();
     $('#subAction').hide();
-    //$('#repairOptionstag').hide();    
+    $('#repairOptionstag').hide();    
     $('#datepickertag').hide();
 
+    $('#lnkordernow').click(function () {
+       // debugger;
+        $('#messagebox').hide();
+        $('#mapBox').show();
+        initialize();
+
+        return false;
+    });
+
+    $('#lnkmessage').click(function () {
+       // debugger;
+        $('#messagebox').show();
+        $('#mapBox').hide();
+
+        return false;
+    });
+    
     $('#lnkinstall').click(function () {
-        
+
         initialize('install');
         $('#masterAction').hide();
         $('#subAction').show();
 
         return false;
     });
-    
+
     //$('#lnkrepair').click(function () {
         
     //    $('#masterAction').hide();
@@ -257,11 +276,13 @@ $(document).ready(function () {
     //});
 
     $("#lnkrepair").click(function () {
+         $('#masterAction').hide();
         open($('#repairOptions'));
     });
 
 
     function open(elem) {
+      //  debugger;
         if (document.createEvent) {
             var e = document.createEvent("MouseEvents");
             e.initMouseEvent("mousedown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);

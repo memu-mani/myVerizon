@@ -43,16 +43,16 @@
 <body>
     <div id="wrapper">
              
-        <div class="main">
+        <div class="main" id="mapBox">
             <div class="wrap">
-                <div class="column_left">
+                <div class="column_left" >
 
                     <div id="map_canvas" style="width:97%;height:500px;"></div>
 
                     <div class="chart_list">
                         <div id="masterAction" class="masteraction">
                             <ul>
-                                <li><a href="#" class="red"  id="lnkinstall">InstallTest1</a></li>
+                                <li><a href="#" class="red"  id="lnkinstall">Install</a></li>
                                 <li><a href="#"  class="red" id="lnkrepair">Repair</a></li>                                
                             </ul>
                         </div>
@@ -91,22 +91,28 @@
                     </div>
                 </div>
 
+             
             </div>
 
 
             <div class="clear"></div>
         </div>
+        <div  id="messagebox">
+            <h1> Messages </h1>
 
-        <div class="over_map">
-            <div class="menu-ico"><a href="#menu"></a></div>
         </div>
+      
+
+            <div class="over_map">
+                <div class="menu-ico"><a href="#menu"></a></div>
+            </div>
         </div>
 
         <nav id="menu">
             <ul>
-                <li><a href="#" id="lnkProfile"><i><img src="images/user.png"></i>Order Now</a></li>
-                <li><a href="#"><span><i><img src="images/mail.png"></i>Messages</span><label class="digits active">5</label><div class="clear"></div></a></li>
-                <li><a href="#" id="lnkCompliants"><span> <i><img src="images/invites.png"></i>Track Technician</span><div class="clear"></div></a></li>
+                <li><a href="#" id="lnkordernow"><i><img src="images/user.png"></i>Order Now</a></li>
+                <li><a href="#" id="lnkmessage"><span><i><img src="images/mail.png"></i>Messages</span><label class="digits active">5</label><div class="clear"></div></a></li>
+                <li><a href="#" id="lnktrack"><span> <i><img src="images/invites.png"></i>Track Technician</span><div class="clear"></div></a></li>
                 <!--<li><a href="#"><span> <i><img src="images/events.png"></i> Events</span><label class="digits">5</label><div class="clear"></div></a></li>
                 <li><a href="#"><i><img src="images/favourite.png" alt="" /></i>Favorites</a></li>
                 <li><a href="#"><span><i><img src="images/statistics.png"></i>  Statistics</span></a></li>
