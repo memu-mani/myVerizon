@@ -359,6 +359,7 @@ $(document).ready(function () {
                 //  debugger;
                var messages = $.parseJSON(data);
                if (books != null) {
+                   $("#messageContainer").empty();
                    $("#messageTemplate").tmpl(books).appendTo("#messageContainer");
 
                    $(document).on("click", "a.messageitem", function () {
