@@ -18,11 +18,11 @@ $(document).ready(function () {
         var info_window = new google.maps.InfoWindow({
             content: 'loading'
         });
-        setCustomerMarker(google_map);
+       // setCustomerMarker(google_map);
       
         if(loadtype=='install')
         {
-            setInstallTechnicianMarker(google_map);            
+            setInstallTechnicianMarker(google_map);
         }
         else  if(loadtype=='repair')
         {
@@ -56,47 +56,69 @@ $(document).ready(function () {
 
     function setInstallTechnicianMarker(google_map) {
 
-        var installTechnician = [
-['Technician 1', 33.84659, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
-['Technician 2', 33.846553, -84.35886, '<p><strong>Location Name 3</strong><br />Address 3</p>'],
-['Technician 3', 33.846653, -84.366125, '<p><strong>Location Name 4</strong><br />Address 4</p>'],
+//        var installTechnician = [
+//['Technician 1', 33.84659, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
+//['Technician 2', 33.846553, -84.35886, '<p><strong>Location Name 3</strong><br />Address 3</p>'],
+//['Technician 3', 33.846653, -84.366125, '<p><strong>Location Name 4</strong><br />Address 4</p>'],
 
-        ];
+//        ];
 
+        var api = 'GetInstallTechnician';
+        var technicians = getTechnicians(api);
 
-        //var i = 0;
-        for (var i = 0; i < installTechnician.length; i++) {
-            var item = installTechnician[i];
-            var m = new google.maps.Marker({
-                map: google_map,
-                animation: google.maps.Animation.DROP,
-                title: item[0],
-                position: new google.maps.LatLng(item[1], item[2]),
-                html: item[3],
+        ////var i = 0;
+        //for (var i = 0; i < installTechnician.length; i++) {
+        //    var item = installTechnician[i];
+        //    var m = new google.maps.Marker({
+        //        map: google_map,
+        //        animation: google.maps.Animation.DROP,
+        //        title: item[0],
+        //        position: new google.maps.LatLng(item[1], item[2]),
+        //        html: item[3],
 
-            });
+        //    });
+        //}
+        if (technicians != null) {
+            //var i = 0;
+            for (var i = 0; i < technicians.length; i++) {
+                var item = technicians[i];
+                if (item != null) {
+                    var m = new google.maps.Marker({
+                        map: google_map,
+                        animation: google.maps.Animation.DROP,
+                        title: item.Name,
+                        position: new google.maps.LatLng(item.Lat, item.Lang),
+                        html: item.skill,
+
+                    });
+                }
+            }
         }
+
     }
 
-        function setRepairTechnicianMarker(google_map) {
+    function setRepairTechnicianMarker(google_map) {
 
-         
-            var technicians = getTechniciandetails();
-   
+        var technicianType = $("#repairOptions option:selected").val();
+        var api='GetRepairTechnician/'+technicianType;
+        var technicians = getTechnicians(api);
+     //   debugger;
             if(technicians!=null)
 
             {
                 //var i = 0;
                 for (var i = 0; i < technicians.length; i++) {
                     var item = technicians[i];
-                    var m = new google.maps.Marker({
-                        map: google_map,
-                        animation: google.maps.Animation.DROP,
-                        title: item[0],
-                        position: new google.maps.LatLng(item[1], item[2]),
-                        html: item[3],
+                    if (item != null) {
+                        var m = new google.maps.Marker({
+                            map: google_map,
+                            animation: google.maps.Animation.DROP,
+                            title: item.Name,
+                            position: new google.maps.LatLng(item.Lat, item.Lang),
+                            html: item.skill,
 
-                    });
+                        });
+                    }
                 }
             }
 
@@ -149,7 +171,64 @@ $(document).ready(function () {
                    
         }
        
-    initialize();
+    
+    
+        function getTechnicians(api) {
+            var techniciandata;
+            
+            $.ajax({
+                type: "GET",
+                async: false,
+                url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician",
+                //url: "http://localhost:22283/Service1.svc/GetInstallTechnician",// + api,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+                success: function (data, status, jqXHR) {
+                   // debugger;
+                     techniciandata = $.parseJSON(data);
+                    // initialize(actiontype, techniciandata);
+                    //return techniciandata;
+                   // $('#selectedrepirValue').text(data);
+                },
+
+                error: function (jqXHR, status) {
+                    $("#selectedrepirValue").text(jqXHR);
+                    techniciandata= null;
+                    // error handler
+                }
+            });
+            return techniciandata;
+        }
+
+        function getCustomerdetails(api) {
+            var techniciandata;
+
+            $.ajax({
+                type: "GET",
+                async: false,               
+                url: "http://localhost:22283/Service1.svc/" + api,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+                success: function (data, status, jqXHR) {
+
+                    techniciandata = $.parseJSON(data);
+                    // initialize(actiontype, techniciandata);
+                    //return techniciandata;
+                    // $('#selectedrepirValue').text(data);
+                },
+
+                error: function (jqXHR, status) {
+                    debugger;
+                    techniciandata = null;
+                    // error handler
+                }
+            });
+            return techniciandata;
+        }
+     initialize();
+    //    getTechnicians();
 
     
     $('#subAction').hide();
@@ -194,7 +273,6 @@ $(document).ready(function () {
     });
      
 
-   
 
 
  
@@ -297,6 +375,7 @@ $(document).ready(function () {
 //      calendars.clndr2.forward();
 //    }
 //  });
+
 
 //  $('#lnkCompliants').click(function () {
       
