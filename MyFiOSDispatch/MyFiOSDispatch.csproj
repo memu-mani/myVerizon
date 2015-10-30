@@ -79,7 +79,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Compliant.aspx" />
     <Content Include="css\clndr.css" />
     <Content Include="css\mmenu.css" />
     <Content Include="css\style.css" />
@@ -126,7 +125,6 @@
     <Content Include="images\user.png" />
     <Content Include="images\views.png" />
     <Content Include="images\vzlogo_lg.png" />
-    <Content Include="index.html" />
     <Content Include="js\Chart.js" />
     <Content Include="js\clndr.js" />
     <Content Include="js\jquery.easing.js" />
@@ -140,17 +138,9 @@
     <Content Include="js\site.js" />
     <Content Include="js\underscore-min.js" />
     <Content Include="MyAccount.html" />
-    <Content Include="VerizonSupport.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compliant.aspx.cs">
-      <DependentUpon>Compliant.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Compliant.aspx.designer.cs">
-      <DependentUpon>Compliant.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

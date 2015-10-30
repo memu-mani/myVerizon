@@ -1,10 +1,9 @@
-// call this from the developer console and you can control both instances
-var calendars = {};
-
 
 $(document).ready(function () {
 
-    function initialize(loadtype) {
+
+    //---------------- Google Map methods --------------------
+    function initMap(loadtype) {
         var map_options = {
             center: new google.maps.LatLng(33.84659, -84.35686),
             zoom: 14,
@@ -18,6 +17,7 @@ $(document).ready(function () {
         var info_window = new google.maps.InfoWindow({
             content: 'loading'
         });
+     
         setCustomerMarker(google_map);
       
         if(loadtype=='install')
@@ -32,37 +32,12 @@ $(document).ready(function () {
     }
 
     function setCustomerMarker(google_map) {
+
         getCustomerdetails(google_map);
 
-//        var customerLocation = [
-//['Your Location', 33.846253, -84.362125, '<p><strong>Location Name 2</strong><br />Address 2</p>'],
-
-//        ];
-
-
-//        for (var i = 0; i < customerLocation.length; i++) {
-//            var item = customerLocation[i];
-//            var m = new google.maps.Marker({
-//                map: google_map,
-//                icon: 'images/home1.png',
-//                animation: google.maps.Animation.DROP,
-//                title: item[0],
-//                position: new google.maps.LatLng(item[1], item[2]),
-//                html: item[3],
-
-//            });
-
-//        }
     }
 
     function setInstallTechnicianMarker(google_map) {
-
-//        var installTechnician = [
-//['Technician 1', 33.84659, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
-//['Technician 2', 33.846553, -84.35886, '<p><strong>Location Name 3</strong><br />Address 3</p>'],
-//['Technician 3', 33.846653, -84.366125, '<p><strong>Location Name 4</strong><br />Address 4</p>'],
-
-//        ];
 
         var api = 'GetInstallTechnician';
         
@@ -75,179 +50,30 @@ $(document).ready(function () {
 
         var technicianType = $("#repairOptions option:selected").val();
         var api='GetRepairTechnician/'+technicianType;
-//        var technicians =
-            getTechnicians(google_map, api);
-       //debugger;
-       //     if(technicians!=null)
-
-       //     {
-       //         //var i = 0;
-       //         for (var i = 0; i < technicians.length; i++) {
-       //             var item = technicians[i];
-       //             if (item != null) {
-       //                 var m = new google.maps.Marker({
-       //                     map: google_map,
-       //                     animation: google.maps.Animation.DROP,
-       //                     title: item.Name,
-       //                     position: new google.maps.LatLng(item.Lat, item.Lang),
-       //                     html: item.skill,
-
-       //                 });
-       //             }
-       //         }
-       //     }
-
-        }
-
-        function getTechniciandetails()
-        {
-           
-            var technicianType = $("#repairOptions option:selected").val() ;
-
-            if(technicianType=='equipment')
-
-            {
-                var technicians = [
-['Technician 1', 33.84359, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
-
-
-                ];
-
-                return technicians;
-            }
-            else  if(technicianType=='internet')
-            {
-                var technicians = [
-['Technician 1', 33.84559, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
-['Technician 1', 33.84759, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
-   
-
-                ];
-
-                return technicians;
-
-            }
-            else  if(technicianType=='voice')
-            {
-                var technicians = [
-['Technician 1', 33.84659, -84.35686, '<p><strong>Location Name 1</strong><br />Address 1</p>'],
-
-                ];
-
-                return technicians;
-
-            }
-            else
-            {
-                return null;
-
-            }
-             
-                   
-        }
+                    getTechnicians(google_map, api);
        
-    
-    
-        function getTechnicians(google_map, api) {
-            var technicians;
-            
-           var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
-           // var apiUrl = "http://localhost:22283/Service1.svc/" + api
-          
-            $.ajax({
-                type: "GET",
-                async: false,
-                crossDomain: true,              
-                url: apiUrl,
-                contentType: "application/json; charset=utf-8",
-                dataType: "jsonp",
-
-                success: function (data, status, jqXHR) {
-               //  debugger;
-                    technicians = $.parseJSON(data);
-                    if (technicians != null) {
-                        //var i = 0;
-                        for (var i = 0; i < technicians.length; i++) {
-                            var item = technicians[i];
-                            if (item != null) {
-                                var m = new google.maps.Marker({
-                                    map: google_map,
-                                    animation: google.maps.Animation.DROP,
-                                    title: item.Name,
-                                    position: new google.maps.LatLng(item.Lat, item.Lang),
-                                    html: item.skill,
-
-                                });
-                            }
-                        }
-                    }
-
-                    // initialize(actiontype, techniciandata);
-                    //return techniciandata;
-                   // $('#selectedrepirValue').text(data);
-                },
-
-                error: function (jqXHR, status) {
-                   debugger;
-                    $("#selectedrepirValue").text("Sever Error");
-                    techniciandata= null;
-                    // error handler
-                }
-            });
-         //   return techniciandata;
         }
 
-        function getCustomerdetails(google_map,api) {
-            var customerLocation;
-
-            $.ajax({
-                type: "GET",
-                async: false,               
-                url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation",
-                contentType: "application/json; charset=utf-8",
-                dataType: "jsonp",
-
-                success: function (data, status, jqXHR) {
-
-                    customerLocation = $.parseJSON(data);
-                
-                    for (var i = 0; i < customerLocation.length; i++) {
-                        var item = customerLocation[i];
-                        var m = new google.maps.Marker({
-                            map: google_map,
-                            icon: 'images/home1.png',
-                            animation: google.maps.Animation.DROP,
-                            title: item.Name,
-                            position: new google.maps.LatLng(item.Lat, item.Lang),
-                            html: item.ServiceType,
-
-                        });
-
-                    }},
-
-                error: function (jqXHR, status) {
-                   
-                    customerLocation = null;
-                    // error handler
-                }
-            });
-            //return techniciandata;
-        }
-
-        initialize();
-        LoadMessages();
-
+    //---------------- Google Map methods --------------------
+    
+       
+    //------------On Load ------------------
+        initMap();
+        LoadMessages();   
      $('#mapBox').show();
      $('#messagebox').hide();
     $('#subAction').hide();
     $('#repairOptionstag').hide();    
     $('#datepickertag').hide();
+    //------------On Load ------------------
 
+
+    //------------Events------------------
     $('#lnkordernow').click(function () {
        // debugger;
         $('#messagebox').hide();
         $('#mapBox').show();
-        initialize();
+        initMap();
 
         return false;
     });
@@ -263,20 +89,14 @@ $(document).ready(function () {
     
     $('#lnkinstall').click(function () {
 
-        initialize('install');
+        initMap('install');
         $('#masterAction').hide();
         $('#subAction').show();
 
         return false;
     });
 
-    //$('#lnkrepair').click(function () {
-        
-    //    $('#masterAction').hide();
-    //    $('#repairOptions').trigger("mousedown");
-    //    //$('#repairOptionstag').show();      
-    //    return false;
-    //});
+   
 
     $("#lnkrepair").click(function () {
         $('#masterAction').hide();
@@ -300,7 +120,7 @@ $(document).ready(function () {
     }
 
     $('#lnkback').click(function () {
-        initialize();
+        initMap();
         $('#masterAction').show();
            $('#subAction').hide();
            $('#repairOptionstag').hide();
@@ -309,7 +129,7 @@ $(document).ready(function () {
     });
 
     $('#lnklater').click(function () {
-        initialize();
+        initMap();
         $('#masterAction').hide();
         $('#subAction').show();
         $('#datepickertag').show();
@@ -317,7 +137,6 @@ $(document).ready(function () {
     });
 
   
-
     $("#datepickid").change(function () {
        
         var selecteddate = $("#datepickid").val();
@@ -326,24 +145,20 @@ $(document).ready(function () {
 
 
     $("#repairOptions").change(function () {
-        initialize('repair');
+        initMap('repair');
          $('#repairOptionstag').hide();
          $('#subAction').show();         
          $("#lnkrequestnow").prop("disabled", false);
          $("#lnklater").prop("disabled", false);
         
     });
+    
+    //------------Events------------------
 
-    // Create an array of books
-    var books = [
-        { title: "ASP.NET 4 Unleashed", price: 37.79, picture: "next-arrow.png" },
-        { title: "ASP.NET MVC Unleashed", price: 44.99, picture: "next-arrow.png" },
-        { title: "ASP.NET Kick Start", price: 4.00, picture: "next-arrow.png" },
-       // { title: "ASP.NET MVC Unleashed iPhone", price: 44.99, picture: "next-arrow.png" },
-    ];
+    //------------Service Methods ---------------------
 
     function LoadMessages() {
-        var technicians;
+       
         var customerid='001'
 
         var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
@@ -368,12 +183,52 @@ $(document).ready(function () {
                    $(document).on("click", "a.messageitem", function () {
                        alert($(this).text());
                    });
+                }               
+            },
 
+            error: function (jqXHR, status) {
+                debugger;
+                $("#selectedrepirValue").text("Sever Error");               
+                // error handler
+            }
+        });
+        
+    }
+
+    function getTechnicians(google_map, api) {
+        var technicians;
+
+        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+        // var apiUrl = "http://localhost:22283/Service1.svc/" + api
+
+        $.ajax({
+            type: "GET",
+            async: false,
+            crossDomain: true,
+            url: apiUrl,
+            contentType: "application/json; charset=utf-8",
+            dataType: "jsonp",
+
+            success: function (data, status, jqXHR) {
+                //  debugger;
+                technicians = $.parseJSON(data);
+                if (technicians != null) {
+                    //var i = 0;
+                    for (var i = 0; i < technicians.length; i++) {
+                        var item = technicians[i];
+                        if (item != null) {
+                            var m = new google.maps.Marker({
+                                map: google_map,
+                                animation: google.maps.Animation.DROP,
+                                title: item.Name,
+                                position: new google.maps.LatLng(item.Lat, item.Lang),
+                                html: item.skill,
+
+                            });
+                        }
+                    }
                 }
 
-                // initialize(actiontype, techniciandata);
-                //return techniciandata;
-                // $('#selectedrepirValue').text(data);
             },
 
             error: function (jqXHR, status) {
@@ -383,151 +238,47 @@ $(document).ready(function () {
                 // error handler
             }
         });
-        //   return techniciandata;
+        
     }
 
+    function getCustomerdetails(google_map, api) {
+        var customerLocation;
 
-    //function formatPrice(price) {
-    //    return "$" + price.toFixed(2);
-    //}
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation",
+            contentType: "application/json; charset=utf-8",
+            dataType: "jsonp",
 
-    //$(document).on("click", "a.messageitem", function () {
-    //    alert($(this).text()); 
-    //});
+            success: function (data, status, jqXHR) {
 
-    //$('a.bookitem').live('click', function () {
-    //    alert('clicked in template');
-    //});
+                customerLocation = $.parseJSON(data);
 
-   
-    
-    //$('#repairOptions').click(function () {
-    //   // debugger;
-    //    //$('#repairOptionstag').show();
-    //    return false;
-    //});
-     
+                for (var i = 0; i < customerLocation.length; i++) {
+                    var item = customerLocation[i];
+                    var m = new google.maps.Marker({
+                        map: google_map,
+                        icon: 'images/home1.png',
+                        animation: google.maps.Animation.DROP,
+                        title: item.Name,
+                        position: new google.maps.LatLng(item.Lat, item.Lang),
+                        html: item.ServiceType,
 
+                    });
 
+                }
+            },
 
- 
+            error: function (jqXHR, status) {
 
-    //$(".repair_option").click(function (e) {
-    //   debugger;
-    //    alert(e.val());
-    //});
+                customerLocation = null;
+                // error handler
+            }
+        });
+        
+    }
 
-
-
+    //------------Service Methods ---------------------
 });
 
-
-
-//$(document).ready( function() {
-
-//  // assuming you've got the appropriate language files,
-//  // clndr will respect whatever moment's language is set to.
-//  // moment.lang('ru');
-
-//    $(".compliantregister").hide();
-
-//  // here's some magic to make sure the dates are happening this month.
-//  var thisMonth = moment().format('YYYY-MM');
-
-//  var eventArray = [
-//    { startDate: thisMonth + '-10', endDate: thisMonth + '-14', title: 'Multi-Day Event' },
-//    { startDate: thisMonth + '-21', endDate: thisMonth + '-23', title: 'Another Multi-Day Event' }
-//  ];
-
-//  // the order of the click handlers is predictable.
-//  // direct click action callbacks come first: click, nextMonth, previousMonth, nextYear, previousYear, or today.
-//  // then onMonthChange (if the month changed).
-//  // finally onYearChange (if the year changed).
-
-//  calendars.clndr1 = $('.cal1').clndr({
-//    events: eventArray,
-//    // constraints: {
-//    //   startDate: '2013-11-01',
-//    //   endDate: '2013-11-15'
-//    // },
-//    clickEvents: {
-//      click: function(target) {
-//        console.log(target);
-//        if($(target.element).hasClass('inactive')) {
-//          console.log('not a valid datepicker date.');
-//        } else {
-//          console.log('VALID datepicker date.');
-//        }
-//      },
-//      nextMonth: function() {
-//        console.log('next month.');
-//      },
-//      previousMonth: function() {
-//        console.log('previous month.');
-//      },
-//      onMonthChange: function() {
-//        console.log('month changed.');
-//      },
-//      nextYear: function() {
-//        console.log('next year.');
-//      },
-//      previousYear: function() {
-//        console.log('previous year.');
-//      },
-//      onYearChange: function() {
-//        console.log('year changed.');
-//      }
-//    },
-//    multiDayEvents: {
-//      startDate: 'startDate',
-//      endDate: 'endDate'
-//    },
-//    showAdjacentMonths: true,
-//    adjacentDaysChangeMonth: false
-//  });
-
-//  // calendars.clndr2 = $('.cal2').clndr({
-//  //   template: $('#template-calendar').html(),
-//  //   events: eventArray,
-//  //   startWithMonth: moment().add('month', 1),
-//  //   clickEvents: {
-//  //     click: function(target) {
-//  //       console.log(target);
-//  //     }
-//  //   }
-//  // });
-
-//  // bind both clndrs to the left and right arrow keys
-//  $(document).keydown( function(e) {
-//    if(e.keyCode == 37) {
-//      // left arrow
-//      calendars.clndr1.back();
-//      calendars.clndr2.back();
-//    }
-//    if(e.keyCode == 39) {
-//      // right arrow
-//      calendars.clndr1.forward();
-//      calendars.clndr2.forward();
-//    }
-//  });
-
-
-//  $('#lnkCompliants').click(function () {
-      
-//       $(".compliantregister").show();
-      
-//       $(".column_left").hide();
-    
-//      return false;
-//  });
-
-//  $('#lnkProfile').click(function () {
-
-//      $(".column_left").show();
-
-//      $(".compliantregister").hide();
-
-//      return false;
-//  });
-
-//});
