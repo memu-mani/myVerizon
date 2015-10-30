@@ -251,7 +251,7 @@ $(document).ready(function () {
     $('#lnkrepair').click(function () {
         
         $('#masterAction').hide();
-        $('#repairOptions').trigger("click");
+        $('#repairOptions').trigger("mousedown");
         //$('#repairOptionstag').show();      
         return false;
     });
