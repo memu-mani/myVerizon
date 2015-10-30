@@ -276,8 +276,12 @@ $(document).ready(function () {
     //});
 
     $("#lnkrepair").click(function () {
-         $('#masterAction').hide();
-        open($('#repairOptions'));
+        $('#masterAction').hide();
+        $('#repairOptionstag').show();
+        $('#subAction').show();
+        $("#lnkrequestnow").prop("disabled", true);
+        $("#lnklater").prop("disabled", true);
+       // open($('#repairOptions'));
     });
 
 
@@ -296,14 +300,28 @@ $(document).ready(function () {
         initialize();
         $('#masterAction').show();
            $('#subAction').hide();
-       
+           $('#repairOptionstag').hide();
+           $('#datepickertag').hide();
         return false;
     });
 
+    $('#lnklater').click(function () {
+        initialize();
+        $('#masterAction').hide();
+        $('#subAction').show();
+        $('#datepickertag').show();
+        return false;
+    });
+
+        
+
     $("#repairOptions").change(function () {
-         $('#repairOptionstag').hide();
-        $('#subAction').show();       
         initialize('repair');
+         $('#repairOptionstag').hide();
+         $('#subAction').show();         
+         $("#lnkrequestnow").prop("disabled", false);
+         $("#lnklater").prop("disabled", false);
+        
     });
     
     //$('#repairOptions').click(function () {
