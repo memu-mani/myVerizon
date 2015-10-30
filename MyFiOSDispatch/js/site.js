@@ -313,7 +313,14 @@ $(document).ready(function () {
         return false;
     });
 
-        
+    datepickid
+
+    $("#datepickid").change(function () {
+       
+        var selecteddate = $("#datepickid").val();
+        $("#datepickertag1").html(selecteddate);
+    });
+
 
     $("#repairOptions").change(function () {
         initialize('repair');
