@@ -248,13 +248,28 @@ $(document).ready(function () {
         return false;
     });
     
-    $('#lnkrepair').click(function () {
+    //$('#lnkrepair').click(function () {
         
-        $('#masterAction').hide();
-        $('#repairOptions').trigger("mousedown");
-        //$('#repairOptionstag').show();      
-        return false;
+    //    $('#masterAction').hide();
+    //    $('#repairOptions').trigger("mousedown");
+    //    //$('#repairOptionstag').show();      
+    //    return false;
+    //});
+
+    $("#lnkrepair").click(function () {
+        open($('#repairOptions'));
     });
+
+
+    function open(elem) {
+        if (document.createEvent) {
+            var e = document.createEvent("MouseEvents");
+            e.initMouseEvent("mousedown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            elem[0].dispatchEvent(e);
+        } else if (element.fireEvent) {
+            elem[0].fireEvent("onmousedown");
+        }
+    }
 
     $('#lnkback').click(function () {
         initialize();
@@ -270,11 +285,11 @@ $(document).ready(function () {
         initialize('repair');
     });
     
-    $('#repairOptions').click(function () {
-       // debugger;
-        //$('#repairOptionstag').show();
-        return false;
-    });
+    //$('#repairOptions').click(function () {
+    //   // debugger;
+    //    //$('#repairOptionstag').show();
+    //    return false;
+    //});
      
 
 
