@@ -271,9 +271,9 @@ $(document).ready(function () {
     });
     
     $('#repairOptions').click(function () {
-        
-        $('#repairOptionstag').show();
-          return false;
+       // debugger;
+        //$('#repairOptionstag').show();
+        return false;
     });
      
 
