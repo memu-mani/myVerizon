@@ -179,13 +179,14 @@ $(document).ready(function () {
             $.ajax({
                 type: "GET",
                 async: false,
+                crossDomain: true,
                 url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician",
                 //url: "http://localhost:22283/Service1.svc/GetInstallTechnician",// + api,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
 
                 success: function (data, status, jqXHR) {
-                   // debugger;
+                 //   debugger;
                      techniciandata = $.parseJSON(data);
                     // initialize(actiontype, techniciandata);
                     //return techniciandata;
@@ -193,6 +194,7 @@ $(document).ready(function () {
                 },
 
                 error: function (jqXHR, status) {
+                  //  debugger;
                     $("#selectedrepirValue").text("Sever Error");
                     techniciandata= null;
                     // error handler
