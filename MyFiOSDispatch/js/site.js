@@ -18,7 +18,7 @@ $(document).ready(function () {
         var info_window = new google.maps.InfoWindow({
             content: 'loading'
         });
-       // setCustomerMarker(google_map);
+        setCustomerMarker(google_map);
       
         if(loadtype=='install')
         {
@@ -32,26 +32,27 @@ $(document).ready(function () {
     }
 
     function setCustomerMarker(google_map) {
+        getCustomerdetails(google_map);
 
-        var customerLocation = [
-['Your Location', 33.846253, -84.362125, '<p><strong>Location Name 2</strong><br />Address 2</p>'],
+//        var customerLocation = [
+//['Your Location', 33.846253, -84.362125, '<p><strong>Location Name 2</strong><br />Address 2</p>'],
 
-        ];
+//        ];
 
 
-        for (var i = 0; i < customerLocation.length; i++) {
-            var item = customerLocation[i];
-            var m = new google.maps.Marker({
-                map: google_map,
-                icon: 'images/home1.png',
-                animation: google.maps.Animation.DROP,
-                title: item[0],
-                position: new google.maps.LatLng(item[1], item[2]),
-                html: item[3],
+//        for (var i = 0; i < customerLocation.length; i++) {
+//            var item = customerLocation[i];
+//            var m = new google.maps.Marker({
+//                map: google_map,
+//                icon: 'images/home1.png',
+//                animation: google.maps.Animation.DROP,
+//                title: item[0],
+//                position: new google.maps.LatLng(item[1], item[2]),
+//                html: item[3],
 
-            });
+//            });
 
-        }
+//        }
     }
 
     function setInstallTechnicianMarker(google_map) {
@@ -64,37 +65,9 @@ $(document).ready(function () {
 //        ];
 
         var api = 'GetInstallTechnician';
-        // var technicians = getTechnicians(api);
+        
         getTechnicians(google_map, api);
-        //debugger;
-        ////var i = 0;
-        //for (var i = 0; i < installTechnician.length; i++) {
-        //    var item = installTechnician[i];
-        //    var m = new google.maps.Marker({
-        //        map: google_map,
-        //        animation: google.maps.Animation.DROP,
-        //        title: item[0],
-        //        position: new google.maps.LatLng(item[1], item[2]),
-        //        html: item[3],
-
-        //    });
-        //}
-        //if (technicians != null) {
-        //    //var i = 0;
-        //    for (var i = 0; i < technicians.length; i++) {
-        //        var item = technicians[i];
-        //        if (item != null) {
-        //            var m = new google.maps.Marker({
-        //                map: google_map,
-        //                animation: google.maps.Animation.DROP,
-        //                title: item.Name,
-        //                position: new google.maps.LatLng(item.Lat, item.Lang),
-        //                html: item.skill,
-
-        //            });
-        //        }
-        //    }
-        //}
+       
 
     }
 
@@ -178,12 +151,14 @@ $(document).ready(function () {
         function getTechnicians(google_map, api) {
             var technicians;
             
+           var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+           // var apiUrl = "http://localhost:22283/Service1.svc/" + api
+          
             $.ajax({
                 type: "GET",
                 async: false,
-                crossDomain: true,
-                url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician",
-                //url: "http://localhost:22283/Service1.svc/GetInstallTechnician",// + api,
+                crossDomain: true,              
+                url: apiUrl,
                 contentType: "application/json; charset=utf-8",
                 dataType: "jsonp",
 
@@ -222,36 +197,44 @@ $(document).ready(function () {
          //   return techniciandata;
         }
 
-        function getCustomerdetails(api) {
-            var techniciandata;
+        function getCustomerdetails(google_map,api) {
+            var customerLocation;
 
             $.ajax({
                 type: "GET",
                 async: false,               
-                url: "http://localhost:22283/Service1.svc/" + api,
+                url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation",
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
+                dataType: "jsonp",
 
                 success: function (data, status, jqXHR) {
 
-                    techniciandata = $.parseJSON(data);
-                    // initialize(actiontype, techniciandata);
-                    //return techniciandata;
-                    // $('#selectedrepirValue').text(data);
-                },
+                    customerLocation = $.parseJSON(data);
+                
+                    for (var i = 0; i < customerLocation.length; i++) {
+                        var item = customerLocation[i];
+                        var m = new google.maps.Marker({
+                            map: google_map,
+                            icon: 'images/home1.png',
+                            animation: google.maps.Animation.DROP,
+                            title: item.Name,
+                            position: new google.maps.LatLng(item.Lat, item.Lang),
+                            html: item.ServiceType,
+
+                        });
+
+                    }},
 
                 error: function (jqXHR, status) {
-                    debugger;
-                    techniciandata = null;
+                   
+                    customerLocation = null;
                     // error handler
                 }
             });
-            return techniciandata;
+            //return techniciandata;
         }
      initialize();
-    //    getTechnicians();
-
-    
+       
     $('#subAction').hide();
     $('#repairOptionstag').hide();    
     $('#datepickertag').hide();
