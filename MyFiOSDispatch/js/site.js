@@ -64,8 +64,9 @@ $(document).ready(function () {
 //        ];
 
         var api = 'GetInstallTechnician';
-        var technicians = getTechnicians(api);
-
+        // var technicians = getTechnicians(api);
+        getTechnicians(google_map, api);
+        //debugger;
         ////var i = 0;
         //for (var i = 0; i < installTechnician.length; i++) {
         //    var item = installTechnician[i];
@@ -78,22 +79,22 @@ $(document).ready(function () {
 
         //    });
         //}
-        if (technicians != null) {
-            //var i = 0;
-            for (var i = 0; i < technicians.length; i++) {
-                var item = technicians[i];
-                if (item != null) {
-                    var m = new google.maps.Marker({
-                        map: google_map,
-                        animation: google.maps.Animation.DROP,
-                        title: item.Name,
-                        position: new google.maps.LatLng(item.Lat, item.Lang),
-                        html: item.skill,
+        //if (technicians != null) {
+        //    //var i = 0;
+        //    for (var i = 0; i < technicians.length; i++) {
+        //        var item = technicians[i];
+        //        if (item != null) {
+        //            var m = new google.maps.Marker({
+        //                map: google_map,
+        //                animation: google.maps.Animation.DROP,
+        //                title: item.Name,
+        //                position: new google.maps.LatLng(item.Lat, item.Lang),
+        //                html: item.skill,
 
-                    });
-                }
-            }
-        }
+        //            });
+        //        }
+        //    }
+        //}
 
     }
 
@@ -101,26 +102,27 @@ $(document).ready(function () {
 
         var technicianType = $("#repairOptions option:selected").val();
         var api='GetRepairTechnician/'+technicianType;
-        var technicians = getTechnicians(api);
-     //   debugger;
-            if(technicians!=null)
+//        var technicians =
+            getTechnicians(google_map, api);
+       //debugger;
+       //     if(technicians!=null)
 
-            {
-                //var i = 0;
-                for (var i = 0; i < technicians.length; i++) {
-                    var item = technicians[i];
-                    if (item != null) {
-                        var m = new google.maps.Marker({
-                            map: google_map,
-                            animation: google.maps.Animation.DROP,
-                            title: item.Name,
-                            position: new google.maps.LatLng(item.Lat, item.Lang),
-                            html: item.skill,
+       //     {
+       //         //var i = 0;
+       //         for (var i = 0; i < technicians.length; i++) {
+       //             var item = technicians[i];
+       //             if (item != null) {
+       //                 var m = new google.maps.Marker({
+       //                     map: google_map,
+       //                     animation: google.maps.Animation.DROP,
+       //                     title: item.Name,
+       //                     position: new google.maps.LatLng(item.Lat, item.Lang),
+       //                     html: item.skill,
 
-                        });
-                    }
-                }
-            }
+       //                 });
+       //             }
+       //         }
+       //     }
 
         }
 
@@ -173,8 +175,8 @@ $(document).ready(function () {
        
     
     
-        function getTechnicians(api) {
-            var techniciandata;
+        function getTechnicians(google_map, api) {
+            var technicians;
             
             $.ajax({
                 type: "GET",
@@ -183,24 +185,41 @@ $(document).ready(function () {
                 url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician",
                 //url: "http://localhost:22283/Service1.svc/GetInstallTechnician",// + api,
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
+                dataType: "jsonp",
 
                 success: function (data, status, jqXHR) {
-                 //   debugger;
-                     techniciandata = $.parseJSON(data);
+               //  debugger;
+                    technicians = $.parseJSON(data);
+                    if (technicians != null) {
+                        //var i = 0;
+                        for (var i = 0; i < technicians.length; i++) {
+                            var item = technicians[i];
+                            if (item != null) {
+                                var m = new google.maps.Marker({
+                                    map: google_map,
+                                    animation: google.maps.Animation.DROP,
+                                    title: item.Name,
+                                    position: new google.maps.LatLng(item.Lat, item.Lang),
+                                    html: item.skill,
+
+                                });
+                            }
+                        }
+                    }
+
                     // initialize(actiontype, techniciandata);
                     //return techniciandata;
                    // $('#selectedrepirValue').text(data);
                 },
 
                 error: function (jqXHR, status) {
-                  //  debugger;
+                   debugger;
                     $("#selectedrepirValue").text("Sever Error");
                     techniciandata= null;
                     // error handler
                 }
             });
-            return techniciandata;
+         //   return techniciandata;
         }
 
         function getCustomerdetails(api) {
