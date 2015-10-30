@@ -233,7 +233,8 @@ $(document).ready(function () {
             });
             //return techniciandata;
         }
-     initialize();
+
+        initialize();
 
      $('#mapBox').show();
      $('#messagebox').hide();
@@ -251,7 +252,8 @@ $(document).ready(function () {
     });
 
     $('#lnkmessage').click(function () {
-       // debugger;
+        // debugger;
+        LoadMessages();
         $('#messagebox').show();
         $('#mapBox').hide();
 
@@ -313,7 +315,7 @@ $(document).ready(function () {
         return false;
     });
 
-    datepickid
+  
 
     $("#datepickid").change(function () {
        
@@ -330,6 +332,70 @@ $(document).ready(function () {
          $("#lnklater").prop("disabled", false);
         
     });
+
+    // Create an array of books
+    var books = [
+        { title: "ASP.NET 4 Unleashed", price: 37.79, picture: "next-arrow.png" },
+        { title: "ASP.NET MVC Unleashed", price: 44.99, picture: "next-arrow.png" },
+        { title: "ASP.NET Kick Start", price: 4.00, picture: "next-arrow.png" },
+       // { title: "ASP.NET MVC Unleashed iPhone", price: 44.99, picture: "next-arrow.png" },
+    ];
+
+    function LoadMessages() {
+        var technicians;
+
+        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician";
+        // var apiUrl = "http://localhost:22283/Service1.svc/" + api
+
+        $.ajax({
+            type: "GET",
+            async: false,
+            crossDomain: true,
+            url: apiUrl,
+            contentType: "application/json; charset=utf-8",
+            dataType: "jsonp",
+
+            success: function (data, status, jqXHR) {
+                //  debugger;
+               var messages = $.parseJSON(data);
+               if (books != null) {
+                   $("#messageTemplate").tmpl(books).appendTo("#messageContainer");
+
+                   $(document).on("click", "a.messageitem", function () {
+                       alert($(this).text());
+                   });
+
+                }
+
+                // initialize(actiontype, techniciandata);
+                //return techniciandata;
+                // $('#selectedrepirValue').text(data);
+            },
+
+            error: function (jqXHR, status) {
+                debugger;
+                $("#selectedrepirValue").text("Sever Error");
+                techniciandata = null;
+                // error handler
+            }
+        });
+        //   return techniciandata;
+    }
+
+
+    //function formatPrice(price) {
+    //    return "$" + price.toFixed(2);
+    //}
+
+    //$(document).on("click", "a.messageitem", function () {
+    //    alert($(this).text()); 
+    //});
+
+    //$('a.bookitem').live('click', function () {
+    //    alert('clicked in template');
+    //});
+
+   
     
     //$('#repairOptions').click(function () {
     //   // debugger;
