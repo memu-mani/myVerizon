@@ -236,7 +236,7 @@ $(document).ready(function () {
      initialize();
        
     $('#subAction').hide();
-    $('#repairOptionstag').hide();    
+    //$('#repairOptionstag').hide();    
     $('#datepickertag').hide();
 
     $('#lnkinstall').click(function () {
