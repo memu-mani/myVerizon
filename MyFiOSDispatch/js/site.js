@@ -235,6 +235,7 @@ $(document).ready(function () {
         }
 
         initialize();
+        LoadMessages();
 
      $('#mapBox').show();
      $('#messagebox').hide();
@@ -253,7 +254,7 @@ $(document).ready(function () {
 
     $('#lnkmessage').click(function () {
         // debugger;
-        LoadMessages();
+       // LoadMessages();
         $('#messagebox').show();
         $('#mapBox').hide();
 
@@ -343,9 +344,10 @@ $(document).ready(function () {
 
     function LoadMessages() {
         var technicians;
+        var customerid='001'
 
-        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetInstallTechnician";
-        // var apiUrl = "http://localhost:22283/Service1.svc/" + api
+        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
+        //var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + customerid;
 
         $.ajax({
             type: "GET",
@@ -358,9 +360,10 @@ $(document).ready(function () {
             success: function (data, status, jqXHR) {
                 //  debugger;
                var messages = $.parseJSON(data);
-               if (books != null) {
+               if (messages != null) {
+                   $('#messagesCount').text(messages.length);
                    $("#messageContainer").empty();
-                   $("#messageTemplate").tmpl(books).appendTo("#messageContainer");
+                   $("#messageTemplate").tmpl(messages).appendTo("#messageContainer");
 
                    $(document).on("click", "a.messageitem", function () {
                        alert($(this).text());
