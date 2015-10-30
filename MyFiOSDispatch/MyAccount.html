@@ -1,0 +1,137 @@
+﻿<!DOCTYPE HTML>
+<head>
+    <title>My FiOS Repair</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!--<script type="text/javascript" src="js/login.js"></script>-->
+    <script type="text/javascript" src="js/Chart.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/jquery.ulslide.js"></script>
+    <!----Calender -------->
+    <link rel="stylesheet" href="css/clndr.css" type="text/css" />
+    <script src="js/underscore-min.js"></script>
+    <script src="js/moment-2.2.1.js"></script>
+    <script src="js/clndr.js"></script>
+    <script src="js/site.js"></script>
+    <!----End Calender -------->
+    <link type="text/css" href="css/mmenu.css" rel="stylesheet" media="all" />
+    <script type="text/javascript" src="js/jquery.mmenu.min.js"></script>
+    <script type="text/javascript">
+		$(function() {
+			$('nav#menu').mmenu();
+		});
+    </script>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="header_top">
+                <div class="menu-ico"><a href="#menu"></a></div>
+                <div class="profile_details">
+                    <br />
+                    <br />   
+                    <br />
+                                     
+                    <div class="clear"></div>
+                </div>
+                    <!--<div class="column_right">
+            <div class="column_right_grid">
+                <div class="newsletter">
+                    <form>
+                        <span>
+                            <i><img src="images/mail.png" alt="" /></i>
+                                <input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}"></span>
+
+                    </form>
+                </div>
+            </div>-->
+                    <!--<div class="profile_details">
+        <div class="sign_in">
+            <h3>Sign in to your account</h3>
+            <form>
+                <span>
+                    <i><img src="images/mail.png" alt="" /></i><input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
+                </span>
+                </form>-->
+                    <!--<form>
+            <span>
+                <i><img src="images/user.png" alt="" /></i>
+                <input type="text" value="Customer current service location">
+
+            </span>
+        </form>
+        <div class="clear"></div>-->
+                    <!--</div>
+            <div class="clear"></div>
+        </div>-->
+              
+    </div>
+    <div class="main">
+        <div class="wrap">
+            <div class="column_left">
+
+                <div id="map_canvas" style="width:97%;height:350px;"></div> 
+           
+                <div class="chart_list">
+                    <div id="masterAction">
+                        <ul>
+                            <li><a href="#" class="red" id="action1">Install</a></li>
+                            <li><a href="#" class="purple" id="action2">Repair<img src="images/next-arrow.png" alt="" /></a></li>
+                            <div class="clear"></div>
+                        </ul>
+                    </div>                 
+                </div>
+
+                <div id="repairOptionstag">
+                    
+                    <span>
+                        <select name="repairOptions">
+                            <option value="equipment">Equipment</option>
+                            <option value="internet">Internet</option>
+                            <option value="voice">Voice</option>
+                            <option value="none">None</option>
+                        </select> 
+                    </span>
+                    <div id="selectedrepirValue">
+
+
+                    </div>
+                </div>
+
+                <div id="datepickertag">
+                    <span>
+                       <input type="date" name="datepick">
+
+                    </span>
+
+                </div>
+            </div>      
+
+        </div>
+
+
+        <div class="clear"></div>
+    </div>
+   
+     
+    <nav id="menu">
+        <ul>
+            <li><a href="#" id="lnkProfile"><i><img src="images/user.png"></i> Profile</a></li>
+            <li><a href="#" ><span><i><img src="images/mail.png"></i> Messages</span><label class="digits active">5</label><div class="clear"></div></a></li>
+            <li><a href="#"id="lnkCompliants" ><span> <i><img src="images/invites.png"></i> Compliants</span><label class="digits">3</label><div class="clear"></div></a></li>
+            <li><a href="#"><span> <i><img src="images/events.png"></i> Events</span><label class="digits">5</label><div class="clear"></div></a></li>
+            <li><a href="#"><i><img src="images/favourite.png" alt="" /></i>Favorites</a></li>
+            <li><a href="#"><span><i><img src="images/statistics.png"></i>  Statistics</span></a></li>
+            <li><a href="#"><i><img src="images/settings.png" alt="" /></i>Settings</a></li>
+        </ul>
+    </nav>
+    <div class="copy-right">
+        <p>© 2013 Designed by <a href="http://verizon.com/" target="_blank"></a>  • Verizon </p>
+    </div>
+</body>
+</html>

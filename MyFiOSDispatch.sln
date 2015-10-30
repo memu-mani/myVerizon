@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFiOSDispatch", "MyFiOSDispatch\MyFiOSDispatch.csproj", "{46935115-9854-4249-8FD8-10F2D8659D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFiOSDispatch.Tests", "MyFiOSDispatch.Tests\MyFiOSDispatch.Tests.csproj", "{203C087A-F193-438E-B59F-46EF9C6D2EF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46935115-9854-4249-8FD8-10F2D8659D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46935115-9854-4249-8FD8-10F2D8659D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46935115-9854-4249-8FD8-10F2D8659D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46935115-9854-4249-8FD8-10F2D8659D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203C087A-F193-438E-B59F-46EF9C6D2EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203C087A-F193-438E-B59F-46EF9C6D2EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203C087A-F193-438E-B59F-46EF9C6D2EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203C087A-F193-438E-B59F-46EF9C6D2EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
