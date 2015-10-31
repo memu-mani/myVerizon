@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     $('#requestNow').click(function () {
 
-        confirm("Please confirm your request");
+        window.alert("Please confirm your request");
 
         return false;
     });
