@@ -106,13 +106,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $('#later').click(function () {
-        //debugger;
-        //confirm("Please confirm your request");
-        $("#later").datepicker();
-
-        return false;
-    });
+   
    
 
     $("#lnkrepair").click(function () {
