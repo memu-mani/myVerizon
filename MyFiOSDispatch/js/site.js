@@ -59,10 +59,10 @@ $(document).ready(function () {
        
     //------------On Load ------------------
         initMap();
-        LoadMessages();
-        $('#loader').show();
-        $('#mapBox').hide();
-        $('#menuIcon').hide();
+       // LoadMessages();
+        $('#loader').hide();
+        $('#mapBox').show();
+        $('#menuIcon').show();
         
      $('#messagebox').hide();
     $('#subAction').hide();
