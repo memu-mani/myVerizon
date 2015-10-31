@@ -59,7 +59,7 @@ $(document).ready(function () {
        
     //------------On Load ------------------
         initMap();
-       // LoadMessages();
+       LoadMessages();
         $('#loader').hide();
         $('#mapBox').show();
         $('#menuIcon').show();
@@ -82,9 +82,9 @@ $(document).ready(function () {
     });
 
     $('#lnkmessage').click(function () {
-       debugger;
+       //debugger;
        LoadMessages();
-       //$('#messagebox').show();
+       $('#messagebox').show();
        $('#mapBox').hide();
 
         return false;
@@ -106,7 +106,13 @@ $(document).ready(function () {
         return false;
     });
 
-   
+    $('#later').click(function () {
+        //debugger;
+        //confirm("Please confirm your request");
+        $("#later").datepicker();
+
+        return false;
+    });
    
 
     $("#lnkrepair").click(function () {
