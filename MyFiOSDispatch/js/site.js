@@ -59,8 +59,11 @@ $(document).ready(function () {
        
     //------------On Load ------------------
         initMap();
-        LoadMessages();   
-     $('#mapBox').show();
+        LoadMessages();
+        $('#loader').show();
+        $('#mapBox').hide();
+        $('#menuIcon').hide();
+        
      $('#messagebox').hide();
     $('#subAction').hide();
     $('#repairOptionstag').hide();    
@@ -79,10 +82,10 @@ $(document).ready(function () {
     });
 
     $('#lnkmessage').click(function () {
-        // debugger;
-       // LoadMessages();
-        $('#messagebox').show();
-        $('#mapBox').hide();
+       debugger;
+       LoadMessages();
+       //$('#messagebox').show();
+       $('#mapBox').hide();
 
         return false;
     });
@@ -177,7 +180,7 @@ $(document).ready(function () {
                var messages = $.parseJSON(data);
                if (messages != null) {
                    $('#messagesCount').text(messages.length);
-                   $("#messageContainer").empty();
+                   //$("#messageContainer").empty();
                    $("#messageTemplate").tmpl(messages).appendTo("#messageContainer");
 
                    $(document).on("click", "a.messageitem", function () {

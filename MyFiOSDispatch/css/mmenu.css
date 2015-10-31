@@ -9,23 +9,18 @@
 .menu-ico a {
 	background: center center no-repeat;
     background-color:transparent;
-	background-image: url(../images/nav.png);	
+	background-image: url(../images/menu-icon.png);	
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	position: absolute;
-	top: 5px;
-	left: 5px;
-	margin:2px 2px;
-	border-radius:2em;
-	-webkit-border-radius:2em;
-	-moz-border-radius:2em;
-	-o-border-radius:2em;
+	top: 1px;
+	left: 1px;
+	margin:0px;
 	outline:none;
 }
 .menu-ico a:hover{
-	background: center center no-repeat #1F253D;
-	background-image: url(../images/nav.png);
+	background-image: url(../images/menu-icon.png);
 }
 /*
 	Animations
@@ -208,11 +203,10 @@ html.mm-opened body
 	white-space: nowrap;
 	overflow: hidden;
 	display: block;
-	padding: 10px ;
-	margin: 0;
-	font-size:1em;
-	color:rgba(57, 66, 100, 1);
-	font-family: 'ambleregular';
+	padding: 8px ;
+	color:black;
+	font-family: sans-serif;
+    font-size:12px,
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -223,14 +217,14 @@ html.mm-opened body
 	margin-bottom: -10px;
 }
 .mm-is-menu li > a:hover{
-	background-color:lightgrey;
+	background-color:white;
 }
 .mm-is-menu li > a label{
 	background:#50597b;
 	color:#FFF;
 	font-size:1em;
 	float:right;
-	padding:3px 10px;
+	padding:5px 5px;
 	border-radius:1em;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
@@ -311,7 +305,7 @@ html.mm-blocking #mm-blocker
 .mm-menu.mm-vertical ul ul
 {
 	display: none;
-	padding: 10px 0 10px 10px;
+	padding: 8px 0 8px 8px;
 }
 .mm-menu.mm-vertical li.mm-opened > ul
 {
@@ -375,7 +369,7 @@ html.mm-blocking #mm-blocker
 }
 .mm-is-menu li
 {
-	border-bottom:1px solid #1F253D;
+	border-bottom:1px solid gray;
 }
 .mm-is-menu li,
 .mm-is-menu li > a,
@@ -461,7 +455,7 @@ html.mm-opened .mm-page
 	padding: 0 2px;
 	position: absolute;
 	right: 40px;
-	top: 10px;
+	top: 8px;
 }
 .mm-menu em.mm-counter + a.mm-subopen
 {
@@ -664,14 +658,15 @@ html.mm-iphone-addressbar.mm-opened body
 /*
 	Sizing and positioning for larger screens
 */
-@media all and (min-width: 500px) {
+@media all and (min-width: 220px) 
+{
 	.mm-menu
 	{
-		width: 500px;
+		width: 250px;
 	}
 	html.mm-opening .mm-page,
 	html.mm-opening #mm-blocker
 	{
-		left: 500px;
+		left: 250px;
 	}
 }

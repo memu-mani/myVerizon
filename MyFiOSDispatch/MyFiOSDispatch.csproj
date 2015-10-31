@@ -66,6 +66,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\menu-icon.png" />
+    <Content Include="images\msg5.png" />
+    <Content Include="images\nav.png" />
+    <Content Include="images\nav3.png" />
+    <Content Include="images\nav5.png" />
+    <Content Include="images\new3.png" />
+    <Content Include="images\newverizon.png" />
+    <Content Include="images\repair1.png" />
+    <Content Include="images\repair5.jpg" />
+    <Content Include="images\track3.png" />
+    <Content Include="images\track4.png" />
+    <Content Include="images\verizon.jpg" />
     <Content Include="packages.config" />
     <Content Include="images\Thumbs.db" />
     <Content Include="fonts\Amble-Regular-webfont.ttf" />
@@ -109,7 +121,7 @@
     <Content Include="images\loginArrow.png" />
     <Content Include="images\mail-hover.png" />
     <Content Include="images\mail.png" />
-    <Content Include="images\nav.png" />
+    <Content Include="images\nav1.png" />
     <Content Include="images\next-arrow.png" />
     <Content Include="images\profile_img150x150.jpg" />
     <Content Include="images\profile_img40x40.jpg" />

@@ -1,16 +1,18 @@
 ﻿<!DOCTYPE HTML>
+<html>
 <head>
     <title>My FiOS Repair</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <!--<script type="text/javascript" src="js/login.js"></script>-->
     <script type="text/javascript" src="js/Chart.js"></script>
     <script type="text/javascript" src="js/jquery.easing.js"></script>
-    <script type="text/javascript" src="js/jquery.ulslide.js"></script>    
+    <script type="text/javascript" src="js/jquery.ulslide.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
     <!----Calender -------->
     <link rel="stylesheet" href="css/clndr.css" type="text/css" />
@@ -26,8 +28,49 @@
 			$('nav#menu').mmenu();
 		});
     </script>
+    <script id="messageTemplate" type="text/x-jQuery-tmpl">
+        <br />
+        <br />
+        <li class="messageitem"><a href="#" class="messageitem">${ReuqestId} </a> -  ${RequestDateTime} - ${details}</li>
 
+    </script>
     <style>
+        .messageitem
+{
+font-family:sans-serif;
+font-size: 14px;
+}
+.contentfont
+{
+font-family:sans-serif;
+font-size: 16px;
+font-weight:bold
+}
+
+        #container 
+        {
+    width:100%;
+    height: 100%;
+    display:inline-block;
+}
+#leftColumn {
+    float:left;
+    width: 50%;
+    height:100%;
+    background: #a80309;
+    border-color:white;
+    border:thin
+
+}
+#rightColumn 
+{
+    float:right;
+    width:50%;
+    height: 100%;
+    background-color: #a80309;
+    border-right:thin;
+    border-right-color:white
+}
         #wrapper {
             position: relative;
         }
@@ -38,97 +81,108 @@
             left: 10px;
             z-index: 99;
         }
+
+         #over_loader {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 98;
+        }
+        #block_container
+{
+    text-align:center;
+}
+#bloc1, #bloc2
+{
+    display:inline;
+}
     </style>
 
 </head>
 <body>
+     <div id="loader" class="over_loader">
+         <i><img src="images/newverizon.png" ></i>
+     </div>
     <div id="wrapper">
-             
         <div class="main" id="mapBox">
             <div class="wrap">
-                <div class="column_left" >
+                <div class="column_left">
+                    <div id="map_canvas" style="width:100%;height:600px;"></div>
+                    <div>
+                        <div>
+                            <div class="ui-grid-d" style="padding-top:5px;padding-bottom:5px">
+                                <div class="ui-block-a" style="text-align:center">
+                                    <img src="images/new3.png" style="text-align:center">
+                                </div>
+                                <div class="ui-block-b" style="text-align:center">
+                                    <img src="images/new3.png">
+                                </div>
+                                <div class="ui-block-c" style="text-align:center">
+                                    <img src="images/new3.png">
+                                </div>
+                                <div class="ui-block-d" style="text-align:center">
+                                    <img src="images/new3.png">
+                                </div>
+                                <div class="ui-block-e" style="text-align:center">
+                                    <img src="images/new3.png">
+                                </div>
+                            </div>
 
-                    <div id="map_canvas" style="width:97%;height:500px;"></div>
-
-                    <div class="chart_list">
-                        <div id="masterAction" class="masteraction">
-                            <ul>
-                                <li><a href="#" class="red"  id="lnkinstall">Install1</a></li>
-                                <li><a href="#"  class="red" id="lnkrepair">Repair</a></li>                                
-                            </ul>
+                            <div class="ui-grid-a" style="background-color:red">
+                                <div class="ui-block-a" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-top:5px;padding-bottom:5px">
+                                    <a href="#" id="requestNow" style="font-family:sans-serif;font-size:14px;color:white;">NOW</a>
+                                </div>
+                                <div class="ui-block-b" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-top:5px;padding-bottom:5px">
+                                    <a href="#" id="later" style="font-family:sans-serif;font-size:14px;color:white;">LATER</a>
+                                </div>
+                            </div>
                         </div>
-                        <div id="subAction" class="subaction">
-                            <ul>                                                              
-                                <li><a href="#"  class="red" id="lnkrequestnow">Request Now</a></li>
-                                <li><a href="#"  class="red" id="lnklater">Later</a></li>   
-                                <li><a href="#" class="red" id="lnkback"><img src="images/next-arrow.png" alt="back"></a></li> 
-                               
-                            </ul>
+
+                        <div id="repairOptionstag">
+                            <span>
+                                <select name="repairOptionsId" id="repairOptions" style="width:85%">
+                                    <option value="none">Select your problem</option>
+                                    <option value="equipment">Equipment</option>
+                                    <option value="internet">Internet</option>
+                                    <option value="voice">Voice</option>
+                                </select>
+                            </span>
                         </div>
+
+                        <div id="datepickertag">
+                            <span>
+
+                                <input type="date" id="datepickid" name="datepick" style="width:85%">
+
+                            </span>
+
+                        </div>
+                        <div id="datepickertag1"> </div>
                     </div>
-
-                    <div id="repairOptionstag">
-                        <span>
-                            <select  name="repairOptionsId" id="repairOptions" style="width:85%" >
-                                <option value="none">Select your problem</option>
-                                <option value="equipment">Equipment</option>
-                                <option value="internet">Internet</option>
-                                <option value="voice">Voice</option>                               
-                            </select>
-                        </span>                      
-                    </div>
-                  
-                    <div id="datepickertag">
-                        <span>
-
-                            <input type="date" id="datepickid" name="datepick" style="width:85%">
-                            <!--<input type="time" name="datetimepick">-->
-
-                        </span>
-
-                    </div>
-                     <div id="datepickertag1"> </div>
                 </div>
-
-             
+                <div class="clear"></div>
             </div>
-
-
-            <div class="clear"></div>
-        </div>
-        <div  id="messagebox">
+    </div>
+        
+        <div class="main" id="messagebox">
             <div class="column_middle">
-                <br />
-                <h3> Messages </h3>
                 <div id="messageContainer"></div>
-                <ul>
-                    <script id="messageTemplate" type="text/x-jQuery-tmpl">
-                        <br />
-                        <br />
-                        <li><a href="#" class="messageitem"><i><img src="images/comments.png"></i>${ReuqestId} </a> -  ${RequestDateTime} - ${details}</li>
+                <ul></ul>
 
-                    </script>
-                </ul>
-
-            </div>
-      </div>
-
-            <div class="over_map">
-                <div class="menu-ico"><a href="#menu"></a></div>
             </div>
         </div>
-
-        <nav id="menu">
-            <ul>
-                <li><a href="#" id="lnkordernow"><i><img src="images/user.png"></i>Order Now</a></li>
-                <li><a href="#" id="lnkmessage"><span><i><img src="images/mail.png"></i>Messages</span><label id="messagesCount" class="digits active">5</label><div class="clear"></div></a></li>
-                <li><a href="#" id="lnktrack"><span> <i><img src="images/invites.png"></i>Track Technician</span><div class="clear"></div></a></li>
-                <!--<li><a href="#"><span> <i><img src="images/events.png"></i> Events</span><label class="digits">5</label><div class="clear"></div></a></li>
-                <li><a href="#"><i><img src="images/favourite.png" alt="" /></i>Favorites</a></li>
-                <li><a href="#"><span><i><img src="images/statistics.png"></i>  Statistics</span></a></li>
-                <li><a href="#"><i><img src="images/settings.png" alt="" /></i>Settings</a></li>-->
-            </ul>
-        </nav>
-
+        <div class="over_map" id="menuIcon">
+            <div class="menu-ico"><a href="#menu"></a></div>
+        </div>
+    <nav id="menu" style="background-color:white">
+        <ul>
+            <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkordernow"><i><img src="images/new3.png"></i>New FiOS Order</a></li>
+            <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkRequestTech"><i><img src="images/repair5.jpg"></i>Request Technicain</a></li>
+            <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnktrack"><span> <i><img src="images/track3.png"></i>Track Technician</span><div class="clear"></div></a></li>
+            <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkmessage"><span><i><img src="images/msg5.png"></i>Messages</span>
+                <label id="messagesCount" class="digits active">5</label><div class="clear"></div></a></li>
+        </ul>
+    </nav>
+        </div>
 </body>
 </html>
