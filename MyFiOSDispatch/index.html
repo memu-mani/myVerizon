@@ -20,9 +20,31 @@
     <script src="js/moment-2.2.1.js"></script>
     <script src="js/clndr.js"></script>
     <script src="js/site.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
     <!----End Calender -------->
     <link type="text/css" href="css/mmenu.css" rel="stylesheet" media="all" />
     <script type="text/javascript" src="js/jquery.mmenu.min.js"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+
+            $("#later").datepicker();
+
+            });
+
+    </script>
+
+    <style type="text/css">
+        .ui-datepicker {
+            font-size: 8pt !important;
+        }
+    </style>
     <script type="text/javascript">
 		$(function() {
 			$('nav#menu').mmenu();
