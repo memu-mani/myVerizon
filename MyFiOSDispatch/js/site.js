@@ -99,6 +99,20 @@ $(document).ready(function () {
         return false;
     });
 
+    $('#requestNow').click(function () {
+
+        confirm("Please confirm your request");
+
+        return false;
+    });
+
+    $('#later').click(function () {
+        //debugger;
+        //confirm("Please confirm your request");
+        $("#later").datepicker();
+
+        return false;
+    });
    
 
     $("#lnkrepair").click(function () {
