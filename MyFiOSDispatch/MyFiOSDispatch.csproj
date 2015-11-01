@@ -66,6 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\interneticon1.png" />
+    <Content Include="images\interneticon2.png" />
+    <Content Include="images\Interneticon4.png" />
     <Content Include="images\menu-icon.png" />
     <Content Include="images\msg5.png" />
     <Content Include="images\nav.png" />
@@ -73,10 +76,18 @@
     <Content Include="images\nav5.png" />
     <Content Include="images\new3.png" />
     <Content Include="images\newverizon.png" />
+    <Content Include="images\phone1.png" />
+    <Content Include="images\phone2.png" />
+    <Content Include="images\phone3.png" />
     <Content Include="images\repair1.png" />
     <Content Include="images\repair5.jpg" />
+    <Content Include="images\router1.png" />
+    <Content Include="images\tcicon3.png" />
     <Content Include="images\track3.png" />
     <Content Include="images\track4.png" />
+    <Content Include="images\truckrol1.png" />
+    <Content Include="images\TV-icon.png" />
+    <Content Include="images\tvicon2.png" />
     <Content Include="images\verizon.jpg" />
     <Content Include="packages.config" />
     <Content Include="images\Thumbs.db" />
