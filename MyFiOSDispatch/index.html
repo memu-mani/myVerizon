@@ -40,10 +40,13 @@
 		});
     </script>
     <script id="messageTemplate" type="text/x-jQuery-tmpl">
-        <br />
-        <br />
-        <li class="messageitem"><a href="#" class="messageitem">${ReuqestId} </a> -  ${RequestDateTime} - ${details}</li>
-
+        <div style="padding:5px;border-bottom:1px solid gray;border-top:1px solid gray;">
+           
+            <li class="messageitem">
+                <a href="#" class="messageitem">${ReuqestId} </a> - ${details}
+                <span style="font-family:sans-serif;font-size:14px">${RequestDateTime}</span>
+            </li>
+        </div>
     </script>
     <style>
         .center {
@@ -144,21 +147,24 @@
     </div>
     <div class="centerDiv">
            <div>
-            <input type="date" name="bday" style="width:170px">
+            <input type="date" id="dispatchDate" style="width:170px">
             <br />
         </div>
         <div class="ui-grid-a" style="padding-top:20px">
             <div class="ui-block-a" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-bottom:8px">
-                <a href="#" id="ok" style="font-family:sans-serif;font-size:14px;color:white;">OK</a>
+                <a href="#" id="laterOk" style="font-family:sans-serif;font-size:14px;color:white;">OK</a>
             </div>
             <div class="ui-block-b" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-bottom:8px">
-                <a href="#" id="cancel" style="font-family:sans-serif;font-size:14px;color:white;">CANCEL</a>
+                <a href="#" id="laterCancel" style="font-family:sans-serif;font-size:14px;color:white;">CANCEL</a>
 
             </div>
         </div>
 
     </div>
     <div id="wrapper">
+        <div id="divTrackHeader" style="text-align:center;padding-top:5px">TRACK MY TECH</div>
+        <div id="divNewFiosHeader" style="text-align:center;padding-top:5px">NEW FIOS</div>
+        <div id="divDispatchHeader" style="text-align:center;padding-top:5px">REQUEST TECH</div>
         <div class="main" id="mapBox">
 
             <div class="wrap">
@@ -198,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ui-grid-a" style="background-color:red;padding-bottom:5px">
+                            <div class="ui-grid-a" style="background-color:red;padding-bottom:5px" id="divAppoinment">
                                 <div class="ui-block-a" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-top:8px;padding-bottom:8px">
                                     <a href="#" id="requestNow" style="font-family:sans-serif;font-size:14px;color:white;">NOW</a>
                                 </div>
@@ -208,16 +214,14 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="date" id="date_field" />
-                        <div id="repairOptionstag">
-                            <span>
-                                <select name="repairOptionsId" id="repairOptions" style="width:85%">
-                                    <option value="none">Select your problem</option>
-                                    <option value="equipment">Equipment</option>
-                                    <option value="internet">Internet</option>
-                                    <option value="voice">Voice</option>
-                                </select>
-                            </span>
+                        <div class="ui-grid-a" id="divTrack" style="background-color:red;padding-bottom:5px">
+                            <div class="ui-block-a" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-top:8px;padding-bottom:8px">
+                                <a href="#" id="requestNow" style="font-family:sans-serif;font-size:14px;color:white;">CALL</a>
+                            </div>
+                            <div class="ui-block-b" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-top:8px;padding-bottom:8px">
+                                <a href="#" id="later" style="font-family:sans-serif;font-size:14px;color:white;">TEXT</a>
+
+                            </div>
                         </div>
 
                         <div id="datepickertag">
@@ -236,8 +240,9 @@
         </div>
 
         <div class="main" id="messagebox">
-            <div class="column_middle">
-                <div id="messageContainer"></div>
+                <div class="column_middle">
+                    <div id="divMsgHeader" style="text-align:center;padding-top:5px">MESSAGES</div>
+                    <div id="messageContainer"></div>
                 <ul></ul>
 
             </div>
@@ -247,9 +252,9 @@
         </div>
         <nav id="menu" style="background-color:white">
             <ul>
-                <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkordernow"><i><img src="images/new3.png"></i>New FiOS</a></li>
+                <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkNewFios"><i><img src="images/new3.png"></i>New FiOS</a></li>
                 <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkRequestTech"><i><img src="images/repair5.jpg"></i>Request Tech</a></li>
-                <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnktrack"><span> <i><img src="images/track3.png"></i>Track Tech</span><div class="clear"></div></a></li>
+                <li style="font-family:sans-serif;font-size:14px"><a href="#" id="lnkTrack"><span> <i><img src="images/track3.png"></i>Track Tech</span><div class="clear"></div></a></li>
                 <li style="font-family:sans-serif;font-size:14px">
                     <a href="#" id="lnkmessage">
                         <span><i><img src="images/msg5.png"></i>Messages</span>

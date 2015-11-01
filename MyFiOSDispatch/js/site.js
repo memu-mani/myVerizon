@@ -275,8 +275,8 @@ $(document).ready(function () {
        
         //var customerid='001'
 
-       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + type;
-       var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + type;
+       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + type;
+      //var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + type;
 
         $.ajax({
             type: "GET",
@@ -313,8 +313,8 @@ $(document).ready(function () {
        
         //var customerid='001'
 
-       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/UpdateAppointment/" + type;
-        var apiUrl = "http://localhost:22283/Service1.svc/UpdateAppointment/" + type;
+      var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/UpdateAppointment/" + type;
+        //var apiUrl = "http://localhost:22283/Service1.svc/UpdateAppointment/" + type;
 
         $.ajax({
             type: "GET",
@@ -348,8 +348,8 @@ $(document).ready(function () {
     function getTechniciansOrAgent(google_map, api) {
         var technicians;
 
-       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
-        var apiUrl = "http://localhost:22283/Service1.svc/" + api
+       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+       // var apiUrl = "http://localhost:22283/Service1.svc/" + api
         
         
         $.ajax({
@@ -396,8 +396,8 @@ $(document).ready(function () {
     function getCustomerdetails(google_map, api) {
         var customerLocation;
         
-         //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation";
-        var apiUrl = "http://localhost:22283/Service1.svc/GetCustomerLocation";
+         var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation";
+        //var apiUrl = "http://localhost:22283/Service1.svc/GetCustomerLocation";
 
         $.ajax({
             type: "GET",
@@ -437,8 +437,8 @@ $(document).ready(function () {
 
     function getTechdetails(google_map) {
         var customerLocation;
-       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetTechLocation";
-        var apiUrl = "http://localhost:22283/Service1.svc/GetTechLocation";
+       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetTechLocation";
+        //var apiUrl = "http://localhost:22283/Service1.svc/GetTechLocation";
 
         $.ajax({
             type: "GET",
