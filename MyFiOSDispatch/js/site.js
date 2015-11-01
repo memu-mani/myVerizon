@@ -141,7 +141,7 @@ $(document).ready(function () {
     
           //alert("Please confirm your request");
 
-           var result = window.confirm("Please confirm your request");
+           var result = window.confirm("Kindly confirm your request. Our technician will be reach out to you shortly. Check your messages for more details");
 
           return false;
     });
