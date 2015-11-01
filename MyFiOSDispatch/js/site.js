@@ -55,6 +55,10 @@ $(document).ready(function () {
         {
             setRepairTechnicianMarker(google_map,repairOption);
         }
+         else  if(loadtype=='track')
+        {
+            getTechdetails(google_map)
+        }
 
     }
 
@@ -90,24 +94,47 @@ $(document).ready(function () {
           $('.centerDiv').hide();
        LoadMessages();
         $('#loader').hide();
+        $('#divTrack').hide();
         $('#mapBox').show();
         $('#menuIcon').show();
         
      $('#messagebox').hide();
     $('#subAction').hide();
     $('#repairOptionstag').hide();    
+    $('#divTrackHeader').hide();
+      $('#divNewFioskHeader').hide();
+      $('#divDispatchkHeader').hide();
+      $('#divNewFiosHeader').hide();
     $('#datepickertag').hide();
+    
     //------------On Load ------------------
 
 
     //------------Events------------------
-    $('#lnkordernow').click(function () {
-       debugger;
+    $('#lnkNewFios').click(function () {
+      // debugger;
         $('#messagebox').hide();
+         $('#divNewFiosHeader').show();
         $('#mapBox').show();
         $('#divRepair').hide();
+        $('#divTrack').hide();
+        $('#divTrackHeader').hide();
+        $('#divMessageHeader').hide();
+        $('#divDispatchHeader').hide();
+        $('#divAppoinment').show();
+        
+        
         initMap('newfios','na');
 
+        return false;
+    });
+
+     $('#laterOk').click(function () {
+       debugger;
+        $('.centerDiv').hide();
+        $('#mapBox').show();
+       
+        UpdateAppointment($('#dispatchDate').val());
         return false;
     });
 
@@ -116,26 +143,63 @@ $(document).ready(function () {
        LoadMessages();
        $('#messagebox').show();
        $('#mapBox').hide();
-
+       $('#divTrack').hide();
+        $('#divDispatchHeader').hide();
+       $('#divNewFiosHeader').hide();
         return false;
     });
+
+     $('#lnkTrack').click(function () {
+       //debugger;
+       $('#mapBox').show();
+         $('#divTrackHeader').show();
+        $('#messagebox').hide();
+       $('#divTrack').show();
+       $('#divAppoinment').hide();
+       $('#divRepair').hide();
+       $('#divDispatchHeader').hide();
+       $('#divNewFiosHeader').hide();
+       initMap('track', 'track');
+        return false;
+    });
+
+     $('#lnkRequestTech').click(function()
+        {
+       // debugger;
+          $('.centerDiv').hide();
+       LoadMessages();
+        $('#loader').hide();
+        $('#divTrack').hide();
+        $('#mapBox').show();
+        $('#menuIcon').show();
+        
+     $('#messagebox').hide();
+    $('#subAction').hide();
+    $('#repairOptionstag').hide();    
+    $('#divTrackHeader').hide();
+      $('#divNewFioskHeader').hide();
+      $('#divDispatchHeader').show();
+        $('#divRepair').show();
+        $('#divAppoinment').show();
+      $('#divNewFiosHeader').hide();
+
+        });
 
     $('.repairImg').click(function()
         {
         debugger;
         repairOption = $(this).attr('id');
+          $('#divNewFiosHeader').hide();
+            $('#divMessageHeader').hide();
+             $('#messagebox').hide();
+            $('#divTrackHeader').hide();
+             $('#divDispatchHeader').show();
+             $('#divRepair').show();
+               $('#mapBox').show();
         initMap('repair', repairOption);
+
         });
     
-    $('#lnkinstall').click(function () {
-
-        initMap('install');
-        $('#masterAction').hide();
-        $('#subAction').show();
-
-        return false;
-    });
-
     $('#requestNow').click(function () {
    
     
@@ -145,8 +209,8 @@ $(document).ready(function () {
 
            if(result=true)
            {
-
-            }
+            UpdateAppointment('now');
+           }
 
           return false;
     });
@@ -168,6 +232,8 @@ $(document).ready(function () {
         $('#subAction').show();
         $("#lnkrequestnow").prop("disabled", true);
         $("#lnklater").prop("disabled", true);
+          $('#divNewFiosHeader').hide();
+            $('#masterAction').hide();
        // open($('#repairOptions'));
     });
 
@@ -183,28 +249,12 @@ $(document).ready(function () {
         }
     }
 
-    $('#lnkback').click(function () {
-        initMap();
-        $('#masterAction').show();
-           $('#subAction').hide();
-           $('#repairOptionstag').hide();
-           $('#datepickertag').hide();
-        return false;
-    });
-
     $('#lnklater').click(function () {
         initMap();
         $('#masterAction').hide();
         $('#subAction').show();
         $('#datepickertag').show();
         return false;
-    });
-
-  
-    $("#datepickid").change(function () {
-       
-        var selecteddate = $("#datepickid").val();
-        $("#datepickertag1").html(selecteddate);
     });
 
 
@@ -221,12 +271,12 @@ $(document).ready(function () {
 
     //------------Service Methods ---------------------
 
-    function LoadMessages() {
+    function LoadMessages(type) {
        
-        var customerid='001'
+        //var customerid='001'
 
-       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
-        //var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + customerid;
+       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + type;
+       var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + type;
 
         $.ajax({
             type: "GET",
@@ -259,11 +309,47 @@ $(document).ready(function () {
         
     }
 
+    function UpdateAppointment(type) {
+       
+        //var customerid='001'
+
+       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/UpdateAppointment/" + type;
+        var apiUrl = "http://localhost:22283/Service1.svc/UpdateAppointment/" + type;
+
+        $.ajax({
+            type: "GET",
+            async: false,
+            crossDomain: true,
+            url: apiUrl,
+            contentType: "application/json; charset=utf-8",
+            dataType: "jsonp",
+
+            success: function (data, status, jqXHR) {
+                //  debugger;
+               var messages = $.parseJSON(data);
+               if (messages != null) {
+                   $('#messagesCount').text(messages.length);
+                   //$("#messageContainer").empty();
+                   $("#messageTemplate").tmpl(messages).appendTo("#messageContainer");
+
+                  
+                }               
+            },
+
+            error: function (jqXHR, status) {
+                debugger;
+                $("#selectedrepirValue").text("Sever Error");               
+                // error handler
+            }
+        });
+        
+    }
+
     function getTechniciansOrAgent(google_map, api) {
         var technicians;
 
-       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
-        //var apiUrl = "http://localhost:22283/Service1.svc/" + api
+       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+        var apiUrl = "http://localhost:22283/Service1.svc/" + api
         
         
         $.ajax({
@@ -310,10 +396,13 @@ $(document).ready(function () {
     function getCustomerdetails(google_map, api) {
         var customerLocation;
         
+         //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation";
+        var apiUrl = "http://localhost:22283/Service1.svc/GetCustomerLocation";
+
         $.ajax({
             type: "GET",
             async: false,
-            url: "http://ondemandservice.azurewebsites.net/Service1.svc/GetCustomerLocation",
+            url: apiUrl,
             contentType: "application/json; charset=utf-8",
             dataType: "jsonp",
 
@@ -346,6 +435,50 @@ $(document).ready(function () {
         
     }
 
+    function getTechdetails(google_map) {
+        var customerLocation;
+       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetTechLocation";
+        var apiUrl = "http://localhost:22283/Service1.svc/GetTechLocation";
+
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: apiUrl,
+            contentType: "application/json; charset=utf-8",
+            dataType: "jsonp",
+
+            success: function (data, status, jqXHR) {
+
+                customerLocation = $.parseJSON(data);
+
+                for (var i = 0; i < customerLocation.length; i++) {
+                    var item = customerLocation[i];
+                    var m = new google.maps.Marker({
+                        map: google_map,
+                        icon: 'images/repair1.png',
+                        animation: google.maps.Animation.DROP,
+                        title: item.Name,
+                        position: new google.maps.LatLng(item.Lat, item.Lang),
+                        html: item.ServiceType,
+
+                    });
+                    google_map.setZoom(22);
+                    google_map.panTo(m.position);
+                }
+            },
+
+            error: function (jqXHR, status) {
+
+                customerLocation = null;
+                // error handler
+            }
+        });
+        
+    }
+
     //------------Service Methods ---------------------
 });
+
+
+
 
