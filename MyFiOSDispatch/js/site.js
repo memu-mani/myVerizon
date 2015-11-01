@@ -20,13 +20,40 @@ $(document).ready(function () {
      
         setCustomerMarker(google_map);
       
-        if(loadtype=='install')
+        if(loadtype=='newfios')
         {
             setInstallTechnicianMarker(google_map);
         }
         else  if(loadtype=='repair')
         {
             setRepairTechnicianMarker(google_map);
+        }
+
+    }
+        function initMap(loadtype, repairOption) {
+        var map_options = {
+            center: new google.maps.LatLng(33.84659, -84.35686),
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI:true
+
+        };
+
+        var google_map = new google.maps.Map(document.getElementById("map_canvas"), map_options);
+
+        var info_window = new google.maps.InfoWindow({
+            content: 'loading'
+        });
+     
+        setCustomerMarker(google_map);
+      
+        if(loadtype=='newfios')
+        {
+            setNewFiosMarker(google_map);
+        }
+        else  if(loadtype=='repair')
+        {
+            setRepairTechnicianMarker(google_map,repairOption);
         }
 
     }
@@ -37,20 +64,21 @@ $(document).ready(function () {
 
     }
 
-    function setInstallTechnicianMarker(google_map) {
+    function setNewFiosMarker(google_map) {
 
-        var api = 'GetInstallTechnician';
+        var api = 'GetNewFiosAgent';
         
-        getTechnicians(google_map, api);
+        getTechniciansOrAgent(google_map, api);
        
 
     }
 
-    function setRepairTechnicianMarker(google_map) {
+    function setRepairTechnicianMarker(google_map,repairOption) {
 
-        var technicianType = $("#repairOptions option:selected").val();
+        //var technicianType = $("#repairOptions option:selected").val();
+        var technicianType = repairOption;
         var api='GetRepairTechnician/'+technicianType;
-                    getTechnicians(google_map, api);
+         getTechniciansOrAgent(google_map, api);
        
         }
 
@@ -59,6 +87,7 @@ $(document).ready(function () {
        
     //------------On Load ------------------
         initMap();
+          $('#divDate').hide();
        LoadMessages();
         $('#loader').hide();
         $('#mapBox').show();
@@ -73,10 +102,11 @@ $(document).ready(function () {
 
     //------------Events------------------
     $('#lnkordernow').click(function () {
-       // debugger;
+       debugger;
         $('#messagebox').hide();
         $('#mapBox').show();
-        initMap();
+        $('#divRepair').hide();
+        initMap('newfios','na');
 
         return false;
     });
@@ -89,6 +119,13 @@ $(document).ready(function () {
 
         return false;
     });
+
+    $('.repairImg').click(function()
+        {
+        debugger;
+        repairOption = $(this).attr('id');
+        initMap('repair', repairOption);
+        });
     
     $('#lnkinstall').click(function () {
 
@@ -109,7 +146,9 @@ $(document).ready(function () {
     $('#later').click(function () {
         //debugger;
         //confirm("Please confirm your request");
-        $("#later").datepicker();
+        //$("#later").datepicker();
+         $('#divDate').show();
+        //divDate
 
         return false;
     });
@@ -178,8 +217,8 @@ $(document).ready(function () {
        
         var customerid='001'
 
-        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
-        //var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + customerid;
+       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
+        var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + customerid;
 
         $.ajax({
             type: "GET",
@@ -212,12 +251,13 @@ $(document).ready(function () {
         
     }
 
-    function getTechnicians(google_map, api) {
+    function getTechniciansOrAgent(google_map, api) {
         var technicians;
 
-        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
-        // var apiUrl = "http://localhost:22283/Service1.svc/" + api
-
+        //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+        var apiUrl = "http://localhost:22283/Service1.svc/" + api
+        
+        
         $.ajax({
             type: "GET",
             async: false,
@@ -236,6 +276,7 @@ $(document).ready(function () {
                         if (item != null) {
                             var m = new google.maps.Marker({
                                 map: google_map,
+                                icon: 'images/repair1.png',
                                 animation: google.maps.Animation.DROP,
                                 title: item.Name,
                                 position: new google.maps.LatLng(item.Lat, item.Lang),
@@ -260,7 +301,7 @@ $(document).ready(function () {
 
     function getCustomerdetails(google_map, api) {
         var customerLocation;
-
+        
         $.ajax({
             type: "GET",
             async: false,
@@ -276,14 +317,15 @@ $(document).ready(function () {
                     var item = customerLocation[i];
                     var m = new google.maps.Marker({
                         map: google_map,
-                        icon: 'images/home1.png',
+                        icon: 'images/homemarker.png',
                         animation: google.maps.Animation.DROP,
                         title: item.Name,
                         position: new google.maps.LatLng(item.Lat, item.Lang),
                         html: item.ServiceType,
 
                     });
-
+                    google_map.setZoom(22);
+                    google_map.panTo(m.position);
                 }
             },
 
