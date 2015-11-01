@@ -87,7 +87,7 @@ $(document).ready(function () {
        
     //------------On Load ------------------
         initMap();
-          $('#divDate').hide();
+          $('.centerDiv').hide();
        LoadMessages();
         $('#loader').hide();
         $('#mapBox').show();
@@ -146,8 +146,8 @@ $(document).ready(function () {
     $('#later').click(function () {
         //debugger;
         //confirm("Please confirm your request");
-        //$("#later").datepicker();
-         $('#divDate').show();
+        
+         $('.centerDiv').show();
         //divDate
 
         return false;
@@ -217,8 +217,8 @@ $(document).ready(function () {
        
         var customerid='001'
 
-       //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
-        var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + customerid;
+       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/GetAvialbleMessages/" + customerid;
+        //var apiUrl = "http://localhost:22283/Service1.svc/GetAvialbleMessages/" + customerid;
 
         $.ajax({
             type: "GET",
@@ -254,8 +254,8 @@ $(document).ready(function () {
     function getTechniciansOrAgent(google_map, api) {
         var technicians;
 
-        //var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
-        var apiUrl = "http://localhost:22283/Service1.svc/" + api
+        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+        //var apiUrl = "http://localhost:22283/Service1.svc/" + api
         
         
         $.ajax({

@@ -21,12 +21,18 @@
     <script src="js/clndr.js"></script>
     <script src="js/site.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="http://cdn.jtsage.com/datebox/1.4.5/jqm-datebox-1.4.5.min.css" />
     <!----End Calender -------->
     <link type="text/css" href="css/mmenu.css" rel="stylesheet" media="all" />
     <script type="text/javascript" src="js/jquery.mmenu.min.js"></script>
-    <script type="text/javascript">
     
+  
+    <script type="text/javascript">
+    jQuery.extend(jQuery.mobile,
+    {
+      ajaxEnabled: false
+    });
     </script>
     <script type="text/javascript">
 		$(function() {
@@ -117,6 +123,18 @@
     display: block;
     margin: 0 auto;
 }
+
+.centerDiv{
+    width:190px;
+    height:100px;
+    background:white;
+    position:fixed;
+    top:50%;
+    left:65%;
+    margin-top:-150px;
+    margin-left:-150px;
+    z-index : 10
+}
     </style>
    
 </head>
@@ -124,10 +142,23 @@
     <div id="loader" class="over_loader">
         <i><img src="images/newverizon.png"></i>
     </div>
-    <div id="divDate" style="z-index:20">
-        Date
+   
+    <div class="centerDiv">
+        <div style="width:187px">
+            <input type="datetime" name="visit" style="width:187px" />
+            <br />
+        </div>
+        <div class="ui-grid-a" style="padding-top:20px">
+            <div class="ui-block-a" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-bottom:8px">
+                <a href="#" id="ok" style="font-family:sans-serif;font-size:14px;color:white;">OK</a>
+            </div>
+            <div class="ui-block-b" style="background-color:red; border-right:1px solid gray;border-top:1px solid gray;text-align:center;padding-bottom:8px">
+                <a href="#" id="cancel" style="font-family:sans-serif;font-size:14px;color:white;">CANCEL</a>
+
+            </div>
+        </div>
+
     </div>
-    <div><input id="someinput" type="text"></div>
     <div id="wrapper">
         <div class="main" id="mapBox">
 
