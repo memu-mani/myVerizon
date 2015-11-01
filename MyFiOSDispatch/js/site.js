@@ -353,7 +353,7 @@ $(document).ready(function ()
                        
                     }
                 }
-               // map.setZoom(15);
+                map.setZoom(19);
                 
                 
             },
@@ -412,7 +412,7 @@ $(document).ready(function ()
         //                html: item.ServiceType
 
         //            });
-        //           // map.setZoom(18);
+        //           map.setZoom(18);
                   
         //    },
 
@@ -465,7 +465,7 @@ $(document).ready(function ()
                         title: item.Name,
                         position: myLatLng
                     });
-                   // map.setZoom(17);
+                    map.setZoom(19);
                     map.panTo(new LatLng('12.981106', '80.24433510000005'));
                
             },
