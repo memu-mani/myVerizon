@@ -139,9 +139,9 @@ $(document).ready(function () {
     $('#requestNow').click(function () {
    
     
-          alert("Please confirm your request");
+          //alert("Please confirm your request");
 
-           //var result = window.confirm("Please confirm your request");
+           var result = window.confirm("Please confirm your request");
 
           return false;
     });
