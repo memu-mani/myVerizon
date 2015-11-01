@@ -241,7 +241,7 @@ $(document).ready(function ()
                 var messages = $.parseJSON(data);
                 if (messages != null) {
                     $('#messagesCount').text(messages.length);
-                    //$("#messageContainer").empty();
+                    $("#messageContainer").empty();
                     $("#messageTemplate").tmpl(messages).appendTo("#messageContainer");
 
                     $(document).on("click", "a.messageitem", function () {
@@ -279,7 +279,7 @@ $(document).ready(function ()
                 var messages = $.parseJSON(data);
                 if (messages != null) {
                     $('#messagesCount').text(messages.length);
-                    //$("#messageContainer").empty();
+                    $("#messageContainer").empty();
                     $("#messageTemplate").tmpl(messages).appendTo("#messageContainer");
 
 
