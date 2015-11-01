@@ -141,7 +141,12 @@ $(document).ready(function () {
     
           //alert("Please confirm your request");
 
-           var result = window.confirm("Kindly confirm your request. Our technician will be reach out to you shortly. Check your messages for more details");
+           var result = window.confirm("Kindly confirm. Upon your confirmation our technician will be reach out to you within 1 hour. Check messages for more details.");
+
+           if(result=true)
+           {
+
+            }
 
           return false;
     });
