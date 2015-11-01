@@ -262,7 +262,7 @@ $(document).ready(function () {
     function getTechniciansOrAgent(google_map, api) {
         var technicians;
 
-        var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
+       var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/" + api;
         //var apiUrl = "http://localhost:22283/Service1.svc/" + api
         
         
