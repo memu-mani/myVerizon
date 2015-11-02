@@ -1,7 +1,6 @@
 //var map = null;
 $(document).ready(function ()
 {
-    debugger;
     setCustomerMarker();
 
     function initMap(loadtype, repairOption) {
@@ -45,19 +44,34 @@ $(document).ready(function ()
 
     //------------On Load ------------------
     //    initMap();
-    $('.centerDiv').hide();
-    LoadMessages();
-    $('#loader').hide();
-    $('#divTrack').hide();
-    $('#mapBox').show();
-    $('#menuIcon').show();
+    //$('.centerDiv').hide();
+    //LoadMessages();
+    //$('#loader').hide();
+    //$('#divTrack').hide();
+    //$('#mapBox').show();
+    //$('#menuIcon').show();
 
+    //$('#messagebox').hide();
+    //$('#subAction').hide();
+    //$('#repairOptionstag').hide();
+    //$('#divTracHeader').hide();
+    //$('#divNewFiosHeader').hide();
+    //$('#divDispatchHeader').hide();
+    //$('#divNewFiosHeader').hide();
+    //$('#datepickertag').hide();
+    loader
+    $('#loader').show();
+    $('.centerDiv').hide();
+    $('#divTrack').hide();
+    $('#mapBox').hide();
+    $('#menuIcon').hide();
     $('#messagebox').hide();
     $('#subAction').hide();
     $('#repairOptionstag').hide();
     $('#divTrackHeader').hide();
-    $('#divNewFioskHeader').hide();
-    $('#divDispatchkHeader').hide();
+    $('#divDispatchHeader').hide();
+    $('#divNewFiosHeader').hide();
+    $('#divDispatchHeader').hide();
     $('#divNewFiosHeader').hide();
     $('#datepickertag').hide();
 
@@ -84,7 +98,7 @@ $(document).ready(function ()
     });
 
     $('#laterOk').click(function () {
-        debugger;
+        //debugger;
         $('.centerDiv').hide();
         $('#mapBox').show();
 
@@ -139,7 +153,7 @@ $(document).ready(function ()
     });
 
     $('.repairImg').click(function () {
-        debugger;
+        //debugger;
         repairOption = $(this).attr('id');
         $('#divNewFiosHeader').hide();
         $('#divMessageHeader').hide();
@@ -251,7 +265,7 @@ $(document).ready(function ()
             },
 
             error: function (jqXHR, status) {
-                debugger;
+                //debugger;
                 $("#selectedrepirValue").text("Sever Error");
                 // error handler
             }
@@ -287,7 +301,7 @@ $(document).ready(function ()
             },
 
             error: function (jqXHR, status) {
-                debugger;
+                //debugger;
                 $("#selectedrepirValue").text("Sever Error");
                 // error handler
             }
@@ -298,7 +312,7 @@ $(document).ready(function ()
     function getTechniciansOrAgent(api) {
 
         var technicians;
-        debugger;
+        //debugger;
        // setCustomerMarker(map);
         var t = new google.maps.Marker({
             map: map,
@@ -370,7 +384,7 @@ $(document).ready(function ()
 
     function getCustomerdetails(api)
     {
-        debugger;
+        //debugger;
 
         var item = customerLocation;
         
