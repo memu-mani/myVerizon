@@ -367,7 +367,7 @@ $(document).ready(function ()
                        
                     }
                 }
-                map.setZoom(19);
+                map.setZoom(13);
                 
                 
             },
@@ -479,7 +479,7 @@ $(document).ready(function ()
                         title: item.Name,
                         position: myLatLng
                     });
-                    map.setZoom(19);
+                    map.setZoom(13);
                     map.panTo(new LatLng('12.981106', '80.24433510000005'));
                
             },
