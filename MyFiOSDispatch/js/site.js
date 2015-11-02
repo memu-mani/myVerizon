@@ -43,37 +43,37 @@ $(document).ready(function ()
 
 
     //------------On Load ------------------
-    //    initMap();
-    //$('.centerDiv').hide();
-    //LoadMessages();
-    //$('#loader').hide();
-    //$('#divTrack').hide();
-    //$('#mapBox').show();
-    //$('#menuIcon').show();
-
-    //$('#messagebox').hide();
-    //$('#subAction').hide();
-    //$('#repairOptionstag').hide();
-    //$('#divTracHeader').hide();
-    //$('#divNewFiosHeader').hide();
-    //$('#divDispatchHeader').hide();
-    //$('#divNewFiosHeader').hide();
-    //$('#datepickertag').hide();
-    loader
-    $('#loader').show();
+        initMap();
     $('.centerDiv').hide();
+    LoadMessages();
+    $('#loader').hide();
     $('#divTrack').hide();
-    $('#mapBox').hide();
-    $('#menuIcon').hide();
+    $('#mapBox').show();
+    $('#menuIcon').show();
+
     $('#messagebox').hide();
     $('#subAction').hide();
     $('#repairOptionstag').hide();
-    $('#divTrackHeader').hide();
-    $('#divDispatchHeader').hide();
+    $('#divTracHeader').hide();
     $('#divNewFiosHeader').hide();
     $('#divDispatchHeader').hide();
     $('#divNewFiosHeader').hide();
     $('#datepickertag').hide();
+    
+    //$('#loader').show();
+    //$('.centerDiv').hide();
+    //$('#divTrack').hide();
+    //$('#mapBox').hide();
+    //$('#menuIcon').hide();
+    //$('#messagebox').hide();
+    //$('#subAction').hide();
+    //$('#repairOptionstag').hide();
+    //$('#divTrackHeader').hide();
+    //$('#divDispatchHeader').hide();
+    //$('#divNewFiosHeader').hide();
+    //$('#divDispatchHeader').hide();
+    //$('#divNewFiosHeader').hide();
+    //$('#datepickertag').hide();
 
     //------------On Load ------------------
 
@@ -340,7 +340,7 @@ $(document).ready(function ()
             dataType: "jsonp",
 
             success: function (data, status, jqXHR) {
-                debugger;
+                //debugger;
                 technicians = $.parseJSON(data);
                 if (technicians != null) {
                     //var i = 0;
@@ -373,7 +373,7 @@ $(document).ready(function ()
             },
 
             error: function (jqXHR, status) {
-                debugger;
+                //debugger;
                 $("#selectedrepirValue").text("Sever Error");
                 techniciandata = null;
                 // error handler
@@ -496,7 +496,7 @@ $(document).ready(function ()
 
     function  SetCustomerLocation()
      {
-      debugger;
+     // debugger;
 
         var apiUrl = "http://ondemandservice.azurewebsites.net/Service1.svc/SetCustomerLocation/" + location;
      //var apiUrl = "http://localhost:22283/Service1.svc/SetCustomerLocation/" + customerLocation;
