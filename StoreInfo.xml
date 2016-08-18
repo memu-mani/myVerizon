@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<store-info>
+
+
+
+<store id="1">
+<StoreNumber>331814</StoreNumber>
+<StoreName>Oleander Dr</StoreName>
+<Address>4512 Oleander Dr</Address>
+<City>Wilmington</City>
+<State>NC</State>
+<ZipCode>28403</ZipCode>
+<PhoneNumber>(910) 793-6908</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>34.2095756</Latitude>
+<Longitude>-77.8877435</Longitude>
+<Country>US</Country>     
+</store>
+
+
+<store id="2">
+<StoreNumber>331815</StoreNumber>
+<StoreName>Raeford Rd</StoreName>
+<Address>4129 Raeford Rd</Address>
+<City>Fayetteville</City>
+<State>NC</State>
+<ZipCode>28304</ZipCode>
+<PhoneNumber>(910) 433-3500</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>31.5336357</Latitude>
+<Longitude>-78.9486916</Longitude>
+<Country>US</Country>
+</store>
+
+<store id="3">
+<StoreNumber>331822</StoreNumber>
+<StoreName>East Monroe</StoreName>
+<Address>1701 Louisville Ave</Address>
+<City>Waco</City>
+<State>TX</State>
+<ZipCode>71201</ZipCode>
+<PhoneNumber>(318) 338-2100</PhoneNumber>
+<StoreHours>12:00 PM -06:00 AM</StoreHours>
+<Latitude>32.5173940</Latitude>
+<Longitude>-92.1076769</Longitude>
+<Country>US</Country>
+</store>
+
+<store id="4">
+<StoreNumber>331817</StoreNumber>
+<StoreName>North Raleigh</StoreName>
+<Address>4412,Falls Of Neuse Rd</Address>
+<City>Raleigh</City>
+<State>NC</State>
+<ZipCode>27609</ZipCode>
+<PhoneNumber>(919) 872-3202</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>35.8425868</Latitude>
+<Longitude>-78.6111635</Longitude>
+<Country>US</Country>
+</store>
+
+
+<store id="5">
+<StoreNumber>331822,</StoreNumber>
+<StoreName>East Monroe</StoreName>
+<Address>1701 Louisville Ave</Address>
+<City>Monroe</City>
+<State>LA</State>
+<ZipCode>71201</ZipCode>
+<PhoneNumber>(318) 338-2100</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>32.5173940</Latitude>
+<Longitude>-92.1076769</Longitude>
+<Country>US</Country>
+</store>
+
+
+<store id="6">
+<StoreNumber>331823</StoreNumber>
+<StoreName>Marshall</StoreName>
+<Address>1006 E End Blvd N</Address>
+<City>Marshall</City>
+<State>TX</State>
+<ZipCode>75670</ZipCode>
+<PhoneNumber>(903) 927-1161</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>32.5351773</Latitude>
+<Longitude>-94.3500376</Longitude>
+<Country>US</Country>
+</store>
+
+
+<store id="7">
+<StoreNumber>331825</StoreNumber>
+<StoreName>San Angelo Sherwood</StoreName>
+<Address>4552 Sherwood Way</Address>
+<City>San Angelo</City>
+<State>TX</State>
+<ZipCode>76901</ZipCode>
+<PhoneNumber>(325) 949-3626</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>31.4351406</Latitude>
+<Longitude>-100.5000112</Longitude>
+<Country>US</Country>
+</store>
+
+
+<store id="8">
+<StoreNumber>331827</StoreNumber>
+<StoreName>Marble Falls</StoreName>
+<Address>2600 Us Highway 281</Address>
+<City>Marble Falls</City>
+<State>TX</State>
+<ZipCode>78654</ZipCode>
+<PhoneNumber>(830) 693-0134</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>30.5979937</Latitude>
+<Longitude>-98.2724644</Longitude>
+<Country>US</Country>
+</store>
+
+
+<store id="9">
+<StoreNumber>331828</StoreNumber>
+<StoreName>Jacksonville South</StoreName>
+<Address>1317 S Jackson St</Address>
+<City>Jacksonville</City>
+<State>TX</State>
+<ZipCode>75766</ZipCode>
+<PhoneNumber>(903) 586-9354</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>31.9513562</Latitude>
+<Longitude>-95.2638934</Longitude>
+<Country>US</Country>
+</store>
+
+
+<store id="10">
+<StoreNumber>331829</StoreNumber>
+<StoreName>Dumas</StoreName>
+<Address>2025 S Dumas Ave</Address>
+<City>Dumas</City>
+<State>TX</State>
+<ZipCode>79029</ZipCode>
+<PhoneNumber>(806) 935-6307</PhoneNumber>
+<StoreHours>12:00 PM -06:00 PM</StoreHours>
+<Latitude>35.8389773</Latitude>
+<Longitude>-101.9723956</Longitude>
+<Country>US</Country>
+</store>
+</store-info>
