@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+
+jQuery.ajax({
+    type: "GET|POST|DELETE|PUT",
+    url: url,
+    data: data,
+    dataType:"text|html|json|jsonp|script|xml"
+    success: searchloc(data)
+    
+});
+
+function searchloc(data)
+{
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (xhttp.readyState == 4 && xhttp.status == 200) {
+
+	  var city=json.stringify(data.city);
+	  var lat=json.stringify(data.lat);
+	  var lng=json.stringify(data.lng);
+	  
+	  
+  }
+};
+
+};
+
+xhttp.open("POST", "", true);
+xhttp.send();
+</script>
+</body>
+</html>
