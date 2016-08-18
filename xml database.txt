@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<store-info>
+   <store1>
+Store Number
+,Store Name
+,Premium,
+Address
+,City,
+State,
+Zip Code
+,Phone Number
+,Store Hours
+,Latitude,
+Longitude,Geo Accuracy,County,Country,Country Code
+      <name>Tanmay Patil</name>
+      <company>TutorialsPoint</company>
+      <phone>(011) 123-4567</phone>
+   </store1>
+   
+   
+</store-info>
