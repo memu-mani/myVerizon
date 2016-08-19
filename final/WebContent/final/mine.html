@@ -1,0 +1,493 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>VERIZON STORE LOCATOR</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="application/x-javascript">
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://maps.google.com/maps/api/js?sensor=false"
+	type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--<script type="text/javascript" src="js/login.js"></script>-->
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript" src="js/jquery.ulslide.js"></script>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+<!----Calender -------->
+<link rel="stylesheet" href="css/clndr.css" type="text/css" />
+<script src="js/underscore-min.js"></script>
+<script src="js/moment-2.2.1.js"></script>
+<script src="js/clndr.js"></script>
+<script src="js/site.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet"
+	href="http://cdn.jtsage.com/datebox/1.4.5/jqm-datebox-1.4.5.min.css" />
+<!----End Calender -------->
+<link type="text/css" href="css/mmenu.css" rel="stylesheet" media="all" />
+<script type="text/javascript" src="js/jquery.mmenu.min.js"></script>
+
+
+<script type="text/javascript">
+	var map;
+	var customerLocation;
+	jQuery.extend(jQuery.mobile, {
+		ajaxEnabled : false
+	});
+</script>
+<script type="text/javascript">
+	$(function() {
+		$('nav#menu').mmenu();
+	});
+</script>
+<script id="messageTemplate" type="text/x-jQuery-tmpl">
+        <div style="padding:5px;border-bottom:1px solid gray;border-top:1px solid gray;">
+
+            <li class="messageitem">
+                <a href="#" class="messageitem">${ReuqestId} </a> <br /> ${details}<br />
+                <span style="font-family:sans-serif;font-size:12px">${RequestDateTime}</span>
+            </li>
+        </div>
+    </script>
+<style>
+.center {
+	margin: auto;
+	width: 50%;
+}
+
+.messageitem {
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+.contentfont {
+	font-family: sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#container {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+#leftColumn {
+	float: left;
+	width: 50%;
+	height: 100%;
+	background: #a80309;
+	border-color: white;
+	border: thin;
+}
+
+#rightColumn {
+	float: right;
+	width: 50%;
+	height: 100%;
+	background-color: #a80309;
+	border-right: thin;
+	border-right-color: white;
+}
+
+#wrapper {
+	position: relative;
+	background-color:grey;
+}
+
+#over_map {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 99;
+}
+
+#over_loader {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 98;
+}
+
+#block_container {
+	text-align: center;
+	
+}
+
+#bloc1, #bloc2 {
+	display: inline;
+		
+}
+
+.img-with-text {
+	text-align: justify;
+	width: 25px;
+	margin: auto;
+	width: 60%;
+	border: 1px solid gray;
+	padding: 10px;
+
+}
+
+.img-with-text img {
+	display: block;
+	margin: 0 auto;
+	
+}
+
+.centerDiv {
+	width: 170px;
+	height: 75px;
+	background: white;
+	position: fixed;
+	top: 50%;
+	left: 65%;
+	margin-top: -150px;
+	margin-left: -130px;
+	z-index: 10;
+}
+
+#map {
+	height: 100%;
+}
+
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 300px;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+}
+
+.pac-container {
+	font-family: Roboto;
+}
+
+#type-selector {
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
+</style>
+<title>VERIZON</title>
+<style>
+#target {
+	width: 345px;
+}
+</style>
+</style>
+
+</head>
+<body>
+	<!-- <div id="loader" class="over_loader">
+		<i><img src="images/newverizon.png"></i>
+	</div>
+	<div class="centerDiv">
+		<div>
+			<input type="date" id="dispatchDate" style="width: 170px"> <br />
+		</div>
+		<div class="ui-grid-a" style="padding-top: 20px">
+			<div class="ui-block-a"
+				style="background-color: red; border-right: 1px solid gray; border-top: 1px solid gray; text-align: center; padding-bottom: 8px">
+				<a href="#" id="laterOk"
+					style="font-family: sans-serif; font-size: 14px; color: white;">OK</a>
+			</div>
+			<div class="ui-block-b"
+				style="background-color: red; border-right: 1px solid gray; border-top: 1px solid gray; text-align: center; padding-bottom: 8px">
+				<a href="#" id="laterCancel"
+					style="font-family: sans-serif; font-size: 14px; color: white;">CANCEL</a>
+
+			</div>
+		</div> 
+
+	</div>-->
+	<div id="wrapper">
+		<div id="divTrackHeader" style="text-align: center; padding-top: 5px ;background-color:black;color:white"><strong>VERIZON
+			STORE LOCATOR</strong></div>
+		<!--         <div id="divNewFiosHeader" style="text-align:center;padding-top:5px">NEW FIOS</div> -->
+		<div id="divDispatchHeader"
+			style="text-align: center; padding-top: 5px">Verizon</div>
+		<div class="main" id="mapBox">
+
+			<div class="wrap">
+				<div class="column_left">
+					<input id="pac-input" class="controls" type="text"
+						placeholder="Search Box">
+					<div id="map" style="width: 100%; height: 432px;"></div>
+					<div>
+						<div>
+							<div class="ui-grid-d"
+								style="padding-top: 1px; padding-bottom: 1px" id="divRepair">
+								<div class="ui-block-a"
+									style="padding-right: 2px; padding-left: 5px">
+									<div class="img-with-text">
+										<a
+											href="http://www.verizon.com/home/verizonglobalhome/ghp_landing.aspx"><img
+											id="repairInstall" class="repairImg"
+											src="images/verizon-residential-routing.png" align="middle" width="50px" height="30">
+										<p
+											style="font-family: sans-serif; font-size: xx-small; text-align: center; height: 100%">HOME</p></a>
+									</div>
+								</div>
+								<div class="ui-block-b"
+									style="padding-right: 2px; padding-left: 5px">
+									<div class="img-with-text">
+										<a href="https://www.verizon.com/home/myverizon/"><img id="repairTv" class="repairImg" src="images/vzlogo_lg.png" height="30"
+											align="middle">
+										<p
+											style="font-family: 'sans-serif'; font-size: xx-small; text-align: center; height: 100%">MY VERIZON</p></a>
+									</div>
+								</div>
+								<!-- <div class="ui-block-c"
+									style="padding-right: 2px; padding-left: 5px">
+									<div class="img-with-text">
+										<img id="repairSpeed" class="repairImg"
+											src="images/Interneticon4.png" align="middle">
+										<p
+											style="font-family: 'sans-serif'; font-size: xx-small; text-align: center; height: 100%">SPEED</p>
+									</div>
+								</div>
+								<div class="ui-block-d"
+									style="padding-right: 2px; padding-left: 5px">
+									<div class="img-with-text">
+										<img id="repairPhone" class="repairImg"
+											src="images/phone3.png" align="middle">
+										<p
+											style="font-family: 'sans-serif'; font-size: xx-small; text-align: center; height: 100%">PHONE</p>
+									</div>
+								</div>
+								<div class="ui-block-e"
+									style="padding-right: 2px; padding-left: 5px">
+									<div class="img-with-text">
+										<img id="repairRouter" class="repairImg"
+											src="images/router1.png" align="middle">
+										<p
+											style="font-family: 'sans-serif'; font-size: xx-small; text-align: center; height: 100%">ROUTER</p>
+									</div>
+								</div>
+							</div> -->
+
+
+							<div id="datepickertag">
+								<span> <input type="date" id="datepickid" name="datepick"
+									style="width: 85%">
+
+								</span>
+
+							</div>
+							<div id="datepickertag1"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+		</div>
+		<div class="over_map" id="menuIcon">
+			<div class="menu-ico">
+				<a href="#menu"></a>
+			</div>
+		</div>
+		<nav id="menu" style="background-color: #d3d3d3">
+			<ul>
+				<li style="font-family: sans-serif; font-size: 14px">
+					<!-- <a href="#" id="lnkNewFios"> -->
+					<i><a href="http://www.verizon.com/about/careers/we-are-global">Verizon Stores</a></i>
+				</li>
+				<li style="font-family: sans-serif; font-size: 14px">
+					<!-- <a href="#" id="lnkNewFios"> -->
+					<i><a href="relief.html">Store
+						Near Me </a></i>
+				</li>
+
+			</ul>
+		</nav>
+	</div>
+
+	<script>
+		// This example adds a search box to a map, using the Google Place Autocomplete
+		// feature. People can enter geographical searches. The search box will return a
+		// pick list containing a mix of places and predicted search terms.
+
+		function initAutocomplete() {
+
+			map = new google.maps.Map(document.getElementById('map'), {
+				center : {
+					lat : 12.971105,
+					lng : 80.24434500000009
+					 
+
+				},styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}],
+				zoom : 13,
+				mapTypeId : google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI : true
+			});
+			
+			
+			
+			
+			
+
+			// Create the search box and link it to the UI element.
+			var input = document.getElementById('pac-input');
+			var searchBox = new google.maps.places.SearchBox(input);
+			map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+			// Bias the SearchBox results towards current map's viewport.
+			map.addListener('bounds_changed', function() {
+				searchBox.setBounds(map.getBounds());
+			});
+
+			var markers = [];
+			// [START region_getplaces]
+			// Listen for the event fired when the user selects a prediction and retrieve
+			// more details for that place.
+			searchBox.addListener('places_changed', function() {
+				var places = searchBox.getPlaces();
+
+				if (places.length == 0) {
+					return;
+				}
+
+				// Clear out the old markers.
+				markers.forEach(function(marker) {
+					marker.setMap(null);
+				});
+				markers = [];
+
+				// For each place, get the icon, name and location.
+				var bounds = new google.maps.LatLngBounds();
+				places.forEach(function(place) {
+					var icon = {
+						url : place.icon,
+						size : new google.maps.Size(71, 71),
+						origin : new google.maps.Point(0, 0),
+						anchor : new google.maps.Point(17, 34),
+						scaledSize : new google.maps.Size(25, 25)
+					};
+
+					// Create a marker for each place.
+					markers.push(new google.maps.Marker({
+						map : map,
+						icon : icon,
+						title : place.name,
+						position : place.geometry.location
+					}));
+
+					markers.forEach(function(marker) {
+						google.maps.event.addListener(marker, "click",
+								function(event) {
+									alert(this.position);
+									customerLocation = this.position.lng()
+											+ '|' + this.position.lat();
+								});
+					});
+
+					if (place.geometry.viewport) {
+						// Only geocodes have viewport.
+						bounds.union(place.geometry.viewport);
+					} else {
+						bounds.extend(place.geometry.location);
+					}
+				});
+				map.fitBounds(bounds);
+			});
+			// [END region_getplaces]
+
+			
+			
+			google.maps.event
+			.addListener(
+					marker,
+					'click',
+					function(event) {
+						document.getElementById("maps_latitude").value = event.latLng
+								.lat();
+						document.getElementById("maps_longitude").value = event.latLng
+								.lng();
+					});
+	var latt = document.getElementById("maps_latitude").value = event.latLng
+			.lat();
+	var longg = document.getElementById("maps_latitude").value = event.latLng
+			.lng();
+	        
+		}
+		
+	</script>
+	
+	
+	 <script>
+
+      function initMap() {
+        var myLatLng = {lat: 13.010236, lng: 80.215651};
+
+        
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'VDSI,CHENNAI!'
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpbVPDSFaEXagYeD2JH6DlgtKNw-1VwNw&callback=initMap">
+    </script>
+	
+	
+	
+	
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpbVPDSFaEXagYeD2JH6DlgtKNw-1VwNw&libraries=places&callback=initAutocomplete"
+		async defer></script>
+		
+		
+		
+		
+		
+</body>
+</html>
+
+
+
+
+
+
+
